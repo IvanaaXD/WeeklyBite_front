@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './infrastructure/auth/auth.service';
+import { UserService } from './user/user.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'weeklybite-front';
+export class AppComponent implements OnInit {
+  title = 'WeeklyBite';
+  isLoggedIn: boolean = false;
+
+  constructor(private authService: AuthService, private userService: UserService) {}
+
+  ngOnInit() {
+    this.userService.init(this.authService);
+
+    this.authService.userRole$.subscribe(role => {
+      this.isLoggedIn = this.authService.isLoggedIn();
+    });
+  }
+
 }
