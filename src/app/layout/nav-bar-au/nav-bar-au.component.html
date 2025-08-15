@@ -1,1 +1,29 @@
-<p>nav-bar-au works!</p>
+<div class="navbar-body">
+    <header class="navbar">
+        <div class="navbar-logo">
+            <span [routerLink]="['home']" class="navbar-title">WeeklyBite</span>
+        </div>
+        <nav class="navbar-links">
+
+            <ng-container *ngIf="role === 'ROLE_ADMIN'">
+                <a routerLink="recepies">RECEPIES</a>
+                <a routerLink="comments">COMMENTS</a>
+            </ng-container>
+
+            <ng-container *ngIf="role === 'ROLE_USER'">
+                <a routerLink="my-recepies-page">RECEPIES</a>
+                <a routerLink="my-products-page">PRODUCTS</a>
+            </ng-container>
+
+            <a routerLink="profile">PROFILE</a>
+            <a routerLink="notification">
+                <img src="../../../assets/images/notifications_off.png" class="notification-picture">
+            </a>
+
+            <button style="float: right" class="register-btn" (click)="logOut()">Log out</button>
+            <a>
+                <img src="../../../assets/images/food.jpg" class="profile-picture">
+            </a>
+        </nav>
+    </header>
+</div>
