@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from '../../env/environment';
 import { AuthService } from '../infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { CreateUserDTO } from './model/user.model';
 
 export interface Account {
   id: number;
@@ -25,11 +26,11 @@ export class UserService {
     'Content-Type': 'application/json'
   });
   
-//   private apiUrl = environment.apiHost + '/api';
-//   private user: CreateUserDTO;
-//   private pupProfilePictureFile: File | null = null;
+  private apiUrl = environment.apiHost + '/api';
+//  private user: CreateUserDTO;
+  private pupProfilePictureFile: File | null = null;
 
-//   constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
 init(authService: AuthService):void {
     
@@ -79,23 +80,23 @@ init(authService: AuthService):void {
 //     return '';
 //   }
 
-//   registerUser(userData: CreateUserDTO, profilePictureFile: File | null, agencyPictures: File[] = []): Observable<any> {
-//     const formData = new FormData();
+  registerUser(userData: CreateUserDTO, profilePictureFile: File | null, agencyPictures: File[] = []): Observable<any> {
+    const formData = new FormData();
     
-//     formData.append('user', new Blob([JSON.stringify(userData)], { type: 'application/json' }));
+    formData.append('user', new Blob([JSON.stringify(userData)], { type: 'application/json' }));
     
-//     if (profilePictureFile) {
-//       formData.append('profilePicture', profilePictureFile, profilePictureFile.name);
-//     }
+    if (profilePictureFile) {
+      formData.append('profilePicture', profilePictureFile, profilePictureFile.name);
+    }
     
-//     if (agencyPictures && agencyPictures.length > 0) {
-//       for (const picture of agencyPictures) {
-//         formData.append('agencyPictures', picture, picture.name);
-//       }
-//     }
+    if (agencyPictures && agencyPictures.length > 0) {
+      for (const picture of agencyPictures) {
+        formData.append('agencyPictures', picture, picture.name);
+      }
+    }
 
-//     return this.http.post<any>(`${this.apiUrl}/users`, formData);
-//   }
+    return this.http.post<any>(`${this.apiUrl}/users`, formData);
+  }
 
 // //   setUserDataForPUP(userData: CreateUserDTO) {
 // //     this.user = userData

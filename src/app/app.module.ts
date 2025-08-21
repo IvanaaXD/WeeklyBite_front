@@ -10,6 +10,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AuthModule } from './infrastructure/auth/auth.module';
 import { I18nPluralPipe } from '@angular/common';
 import { Interceptor } from './infrastructure/auth/interceptor';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { Interceptor } from './infrastructure/auth/interceptor';
     HttpClientModule,
     LayoutModule,
     ReactiveFormsModule,
+    UserModule
   ],
   providers: [
     I18nPluralPipe,

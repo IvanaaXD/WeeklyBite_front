@@ -5,10 +5,11 @@ import { MaterialModule } from '../infrastructure/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../infrastructure/auth/auth.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
-
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -16,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MaterialModule,
     HttpClientModule,
-    // AuthModule,
+    AuthModule,
     FormsModule
   ]
 })
