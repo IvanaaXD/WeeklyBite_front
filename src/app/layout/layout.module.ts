@@ -10,6 +10,7 @@ import { MaterialModule } from '../infrastructure/material/material.module';
 import { TopRecipesComponent } from './home/top-recipes/top-recipes.component';
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { RecipeFilterComponent } from './home/recipe-filter/recipe-filter.component';
+import { FooterComponent } from './footer/footer.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RecipeFilterComponent } from './home/recipe-filter/recipe-filter.compon
     NavBarAuComponent,
     TopRecipesComponent,
     RecipeListComponent,
-    RecipeFilterComponent 
+    RecipeFilterComponent,
+    FooterComponent 
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { RecipeFilterComponent } from './home/recipe-filter/recipe-filter.compon
     NavBarComponent,
     HomeComponent,
     NavBarAuComponent,
+    FooterComponent
   ]
 })
 export class LayoutModule { }
