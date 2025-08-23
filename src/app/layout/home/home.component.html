@@ -1,4 +1,7 @@
 <app-top-recipes></app-top-recipes>
+<div class="header-container">
+  <h3><i>Enjoy in our recepies!</i></h3>
+</div>
 <div class="container">
   <app-recipe-filter class="filters" (filtersChanged)="onRecipeFiltersChanged($event)"></app-recipe-filter>
   <app-recipe-list class="recipes-list" [filters]="recipeFilters"></app-recipe-list>

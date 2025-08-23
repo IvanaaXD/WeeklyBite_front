@@ -1,22 +1,26 @@
-<div class="events-list-container">
-  <mat-card *ngFor="let recipe of recipes" class="event-card">
-    <img mat-card-image [src]="recipe.pictures[0]" alt="Event Image">
-    <div class="event-details">
-      <mat-card-content>
-        <h3>{{ recipe.name }}</h3>
-        <p class="description">{{ recipe.description }}</p>
-        <div class="date">Start date: {{ recipe.duration | date:'dd.MM.yyyy' }}</div>
-        <div class="time">Per people: {{ recipe.numberOfPeople }}</div>
-        <div class="event-details">
-          <div class="buttons">
-            <button class="view-recipe-button" (click)="onViewEvent(recipe)">View more</button>
-          </div>
+<div class="recipes-list-container">
+  <a class="top-recipe-card" *ngFor="let recipe of recipes" [routerLink]="['/recipe', recipe.id]">
+    <img [src]="recipe.pictures[0]" alt="Recipe image">
+    <div class="recipe-overlay">
+      <div class="recipe-meta">
+        <span class="recipe-category">{{ recipe.category }}</span>
+        <span class="recipe-time">
+          <i class="fa-solid fa-clock"></i>
+          {{ recipe.duration }} min
+        </span>
+      </div>
+      <div class="recipe-content">
+        <div class="recipe-title">
+          {{ recipe.name }}
         </div>
-      </mat-card-content>
+        <div class="recipe-description">
+          {{ recipe.description }}
+        </div>
+      </div>
     </div>
-  </mat-card>
+  </a>
 </div>
-  
+
 <div class="custom-paginator" *ngIf="pageProperties.totalCount > 0">
   <div class="page-size">
     Show:

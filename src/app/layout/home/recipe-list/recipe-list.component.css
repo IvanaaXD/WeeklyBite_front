@@ -1,101 +1,96 @@
-h3{
-  padding-bottom: 5px;
-}
-.events-list-container {
-  margin: 30px;
-  max-height: 830px; 
-  overflow-y: auto;
-  padding-right: 10px;
-  scrollbar-width: thin;
-}
-
-.events-list-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.events-list-container::-webkit-scrollbar-thumb {
-  background-color: #c0c0c0;
-  border-radius: 4px;
-}
-
-.events-list-container::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
-
-.event-card {
+.recipes-list-container {
   display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #ffffff;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px 40px;
 }
 
-.event-card img {
-  width: 145px;
-  height: 145px;
-  border-radius: 8px;
+.top-recipe-card {
+  flex: 1 1 calc(33.333% - 16px);
+  max-width: calc(33.333% - 16px);
+  border-radius: 0;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: 'Arial', sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.top-recipe-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.top-recipe-card img {
+  width: 100%;
+  height: 250px;
   object-fit: cover;
-  margin-right: 16px;
+  display: block;
 }
 
-.event-details {
+.recipe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
 }
 
-mat-card-content {
-  padding: 0;
+.top-recipe-card:hover .recipe-overlay {
+  background-color: rgba(129, 43, 43, 0.75);
 }
 
-mat-card-content.mat-mdc-card-content {
-  padding-top: 0;
-}
-
-mat-card-content h3 {
-  font-size: 1.2em;
-  margin: 0;
-  color: #333;
-}
-
-mat-card-content .description {
-  font-size: 0.9em;
-  color: #666;
-  margin: 0;
-}
-
-mat-card-content .date,
-mat-card-content .time,
-mat-card-content .location {
-  font-size: 0.85em;
-  color: #999;
-  margin: 0px;
-}
-
-.paginator-container {
+.recipe-meta {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.view-event-button {
-  background-color: #812B2B; 
-  color: white;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-size: 0.75em;
-  width: 85px;
+.recipe-category,
+.recipe-time {
+  background-color: white;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.view-event-button:hover {
-  background-color: #812B2B; 
+.recipe-time .fa-clock {
+  color: #812B2B;
+  margin-right: 5px;
+}
+
+.recipe-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.recipe-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.recipe-description {
+  font-size: 0.9em;
+  line-height: 1.3;
 }
 
 .buttons {
@@ -111,7 +106,6 @@ mat-card-content .location {
   padding: 16px 24px;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   font-family: 'Segoe UI', sans-serif;
   flex-wrap: wrap;
@@ -129,7 +123,6 @@ mat-card-content .location {
 .page-size select {
   padding: 6px 10px;
   font-size: 14px;
-  border-radius: 8px;
   border: 1px solid #ccc;
   background-color: #fafafa;
   transition: border-color 0.3s;
@@ -150,7 +143,6 @@ mat-card-content .location {
   font-size: 14px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
-  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
@@ -171,7 +163,6 @@ mat-card-content .location {
   opacity: 0.6;
   cursor: default;
 }
-
 
 .block-user {
   margin: 0;
@@ -210,7 +201,6 @@ mat-card-content .location {
 .form-box {
   background-color: #ffffff;
   padding: 2vw 3vw;
-  border-radius: 20px;
   border: 2px solid #812B2B;
   box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
   text-align: center;
@@ -231,4 +221,3 @@ mat-card-content .location {
   color: #333;
   margin-bottom: 25px;
 }
-
