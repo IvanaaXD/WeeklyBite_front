@@ -14,14 +14,14 @@ h3 {
   margin-left: 110px;
   font-family: 'Lora Italic', serif;
   font-size: 1.7em;
-  color: #812B2B;
+  color: #b46f6f;
   letter-spacing: 2px;
   display: inline-block;
 }
 
 .filters {
   flex: 1;
-  background-color: #f1f1f1;
+  background-color: white;
   margin-left: 80px;
 }
 

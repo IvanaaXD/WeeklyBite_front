@@ -32,11 +32,11 @@ export class RecipeListComponent implements OnInit{
 
   pageProperties = {
     page: 0,
-    pageSize: 4,
+    pageSize: 6,
     totalCount: 0,
-    pageSizeOptions: [4, 8, 10]
+    pageSizeOptions: [6, 12, 18]
   };
-  constructor(private recipeService: RecipeService, private dialog: MatDialog, private userService: UserService, private router: Router, private authService: AuthService) {}
+  constructor(private recipeService: RecipeService, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getPagedEntities();
@@ -103,5 +103,4 @@ export class RecipeListComponent implements OnInit{
       this.router.navigate(['/event-details', event.id]);
     }
   }
-
 }
