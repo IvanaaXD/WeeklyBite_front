@@ -1,0 +1,66 @@
+.footer {
+    background-color: #b46f6f;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 20px;
+    border-bottom: 1px solid white;
+}
+
+.footer-left {
+    text-align: center;
+}
+
+.footer-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer-slogan {
+    font-family: 'Zeyada', cursive; 
+    font-size: 24px;
+    margin: 0;
+}
+
+.footer-social h2 {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-links li {
+    margin-bottom: 10px;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.social-links a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px;
+    font-size: 12px;
+}

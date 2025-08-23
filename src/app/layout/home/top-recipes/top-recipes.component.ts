@@ -30,11 +30,11 @@ export class TopRecipesComponent implements OnInit{
       this.router.navigate(['/event-details', event.id]);
     }
   }
+  
   getTopFiveEvents(): void {
     this.recipeService.getTopFive().subscribe(
       (data: GetRecipe[]) => {
         this.recipes = data; 
-        console.log(this.recipes)
       },
       (error) => {
         console.error('Error while fetching top 5 events', error);

@@ -59,7 +59,7 @@ h3 {
 }
 
 .top-recipe-card:hover .recipe-overlay {
-  background-color: rgba(129, 43, 43, 0.75);
+  background-color: rgba(180, 111, 111, 0.65);
 }
 
 .recipe-meta {
@@ -81,7 +81,7 @@ h3 {
 }
 
 .recipe-time .fa-clock {
-  color: #812B2B;
+  color: #b46f6f;
   margin-right: 5px;
 }
 

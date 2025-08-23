@@ -1,1 +1,69 @@
-<p>recipe-filter works!</p>
+<div class="filter-container">
+  <form [formGroup]="filterForm" (ngSubmit)="onApply()" class="filter-form-vertical">
+
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="breakfast">
+        <span class="checkbox-label">Breakfast</span>
+      </label>
+    </div>
+
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="lunch">
+        <span class="checkbox-label">Lunch</span>
+      </label>
+    </div>
+
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="dinner">
+        <span class="checkbox-label">Dinner</span>
+      </label>
+    </div>
+
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="dessert">
+        <span class="checkbox-label">Dessert</span>
+      </label>
+    </div>
+
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="snack">
+        <span class="checkbox-label">Snack</span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="recipe-name">Name of recipe:</label>
+      <input formControlName="name" type="text" id="recipe-name" placeholder="50">
+    </div>
+
+    <div class="form-group">
+      <label for="recipe-description">Recipe's Description</label>
+      <textarea formControlName="description" id="recipe-description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="recipe-content">Recipe's Content</label>
+      <input formControlName="content" id="recipe-content">
+    </div>
+
+    <div class="form-group">
+      <label for="preparation-duration">Duration: (in minutes)</label>
+      <input formControlName="duration" type="number" id="preparation-duration" placeholder="Value">
+    </div>
+
+    <div class="form-group">
+      <label for="number-of-people">Number of people:</label>
+      <input formControlName="numberOfPeople" type="text" id="number-of-people" placeholder="50">
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="apply-button">Apply</button>
+      <button type="button" (click)="onReset()" class="reset-button">Reset</button>
+    </div>
+  </form>
+</div>
