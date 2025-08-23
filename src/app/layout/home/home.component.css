@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    gap: 20px; 
+    padding: 20px;
+  }
+  
+  .filters {
+    flex: 1;  
+    /*max-width: 300px;  Limit width for the filters */
+    background-color: #f1f1f1;
+    /*padding: 20px;*/
+    margin-left: 80px;
+    border-radius: 8px;
+  }
+  
+  .recipes-list {
+    flex: 2;
+    background-color:#F6EFEF;
+    padding: 20px;
+    border-radius: 20px;
+    margin-right: 80px;
+  }
+  
+  .paginator-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: 20px;
+    padding: 40px;
+  }
+  
+  .mat-paginator {
+    color: #fff; 
+    background-color: #1976d2; 
+    border-radius: 8px; 
+    padding: 8px; 
+  }

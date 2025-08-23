@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-home',
@@ -8,5 +6,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  recipeFilters: any = {};
 
+  onRecipeFiltersChanged(filters: any): void {
+    this.recipeFilters = filters;
+  }
 }

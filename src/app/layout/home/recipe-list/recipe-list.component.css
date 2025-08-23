@@ -1,0 +1,234 @@
+h3{
+  padding-bottom: 5px;
+}
+.events-list-container {
+  margin: 30px;
+  max-height: 830px; 
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+}
+
+.events-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.events-list-container::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  border-radius: 4px;
+}
+
+.events-list-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.event-card {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.event-card img {
+  width: 145px;
+  height: 145px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 16px;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+mat-card-content {
+  padding: 0;
+}
+
+mat-card-content.mat-mdc-card-content {
+  padding-top: 0;
+}
+
+mat-card-content h3 {
+  font-size: 1.2em;
+  margin: 0;
+  color: #333;
+}
+
+mat-card-content .description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0;
+}
+
+mat-card-content .date,
+mat-card-content .time,
+mat-card-content .location {
+  font-size: 0.85em;
+  color: #999;
+  margin: 0px;
+}
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.view-event-button {
+  background-color: #628EEF; 
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 0.75em;
+  width: 85px;
+}
+
+.view-event-button:hover {
+  background-color: #812B2B; 
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-paginator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 30px 0;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.page-size {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.page-size select {
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  transition: border-color 0.3s;
+}
+
+.page-size select:hover {
+  border-color: #812B2B;
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-buttons button {
+  padding: 6px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination-buttons button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+  border-color: #999;
+}
+
+.pagination-buttons button.active {
+  background-color: #812B2B;
+  color: white;
+  border-color: #628EEF;
+  font-weight: bold;
+}
+
+.pagination-buttons button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+
+.block-user {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.3); /* blur/overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block-user-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 90vw;
+  width: 100%;
+}
+
+.form-box {
+  background-color: #ffffff;
+  padding: 2vw 3vw;
+  border-radius: 20px;
+  border: 2px solid #812B2B;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-box h2 {
+  color: #5a66d8;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.form-box p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 25px;
+}
+

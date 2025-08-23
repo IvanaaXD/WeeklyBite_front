@@ -7,13 +7,19 @@ import { NavBarAuComponent } from './nav-bar-au/nav-bar-au.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from '../infrastructure/auth/auth.module';
 import { MaterialModule } from '../infrastructure/material/material.module';
+import { TopRecipesComponent } from './home/top-recipes/top-recipes.component';
+import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
+import { RecipeFilterComponent } from './home/recipe-filter/recipe-filter.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     NavBarComponent,
     HomeComponent,
-    NavBarAuComponent 
+    NavBarAuComponent,
+    TopRecipesComponent,
+    RecipeListComponent,
+    RecipeFilterComponent 
   ],
   imports: [
     CommonModule,

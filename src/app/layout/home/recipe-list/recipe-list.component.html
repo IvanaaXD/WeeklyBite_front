@@ -1,0 +1,40 @@
+<div class="events-list-container">
+  <mat-card *ngFor="let recipe of recipes" class="event-card">
+    <img mat-card-image [src]="recipe.pictures[0]" alt="Event Image">
+    <div class="event-details">
+      <mat-card-content>
+        <h3>{{ recipe.name }}</h3>
+        <p class="description">{{ recipe.description }}</p>
+        <div class="date">Start date: {{ recipe.duration | date:'dd.MM.yyyy' }}</div>
+        <div class="time">Per people: {{ recipe.numberOfPeople }}</div>
+        <div class="event-details">
+          <div class="buttons">
+            <button class="view-recipe-button" (click)="onViewEvent(recipe)">View more</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>
+  
+<div class="custom-paginator" *ngIf="pageProperties.totalCount > 0">
+  <div class="page-size">
+    Show:
+    <select [(ngModel)]="pageProperties.pageSize" (change)="changePageSize()">
+      <option *ngFor="let size of pageProperties.pageSizeOptions" [value]="size">{{ size }}</option>
+    </select>
+  </div>
+
+  <div class="pagination-buttons">
+    <button (click)="prevPage()" [disabled]="pageProperties.page === 0">Previous</button>
+
+    <button
+      *ngFor="let page of totalPagesArray; let i = index"
+      [class.active]="i === pageProperties.page"
+      (click)="goToPage(i)">
+      {{ i + 1 }}
+    </button>
+
+    <button (click)="nextPage()" [disabled]="pageProperties.page >= totalPages - 1">Next</button>
+  </div>
+</div>
