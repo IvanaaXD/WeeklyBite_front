@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit {
 
       this.userService.registerUser(userData, this.selectedProfilePictureFile).subscribe({
         next: (response: any) => {
-          console.log('Registration successful:', response);
           this.router.navigate(['/login']);
         },
         error: (error: any) => {

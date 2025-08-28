@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GetRecipe } from '../../../recipe/model/recipe.model';
 import { RecipeService } from '../../../recipe/recipe.service';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../infrastructure/auth/auth.service';
-import { UserService } from '../../../user/user.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -61,6 +59,8 @@ export class RecipeListComponent implements OnInit{
       this.recipeService.getAll(this.pageProperties.page, this.pageProperties.pageSize)
       .subscribe(response => {
         this.recipes = response.content;
+                console.log(response.content)
+
         this.pageProperties.totalCount = response.totalElements;
         this.updatePagination();});
     }
