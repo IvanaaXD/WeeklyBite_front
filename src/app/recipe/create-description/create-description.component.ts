@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CreateRecipe } from '../model/recipe.model';
 import { RecipeStateService } from '../recipe-state.service';
 import { IngredientService } from '../../ingredient/ingredient.service';
 import { RecipeService } from '../recipe.service';
