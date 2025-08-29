@@ -11,6 +11,7 @@ import { AuthModule } from './infrastructure/auth/auth.module';
 import { I18nPluralPipe } from '@angular/common';
 import { Interceptor } from './infrastructure/auth/interceptor';
 import { UserModule } from './user/user.module';
+import { RecipeModule } from './recipe/recipe.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { UserModule } from './user/user.module';
     AuthModule,
     HttpClientModule,
     LayoutModule,
+    RecipeModule,
     ReactiveFormsModule,
     UserModule
   ],

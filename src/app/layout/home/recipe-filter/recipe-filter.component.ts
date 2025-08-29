@@ -42,7 +42,6 @@ export class RecipeFilterComponent implements OnInit {
       page: 0,
       size: 4
     };
-    console.log('🚀 Emitted filters from RecipeFilterComponent:', filters);
     this.filtersChanged.emit(filters);
   }
 

@@ -4,13 +4,19 @@ import { HomeComponent } from './layout/home/home.component';
 import { LoginComponent } from './infrastructure/auth/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.component';
+import { RecipesPageComponent } from './recipe/recipes-page/recipes-page.component';
+import { CreateRecipeComponent } from './recipe/create-recipe/create-recipe.component';
+import { CreateDescriptionComponent } from './recipe/create-description/create-description.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
-   { path: 'register', component: RegisterComponent},
-   { path: 'recipe/:id', component: RecipeDetailsComponent }
+  { path: 'register', component: RegisterComponent},
+  { path: 'recipe/:id', component: RecipeDetailsComponent },
+  { path: 'recipes', component: RecipesPageComponent},
+  { path: 'create-recipe', component: CreateRecipeComponent},
+  { path: 'create-description', component: CreateDescriptionComponent}
 ];
 
 

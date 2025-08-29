@@ -1,4 +1,4 @@
-import { GetProduct } from "../../product/product.model";
+import { GetIngredient } from "../../ingredient/ingredient.model";
 
 export interface GetRecipe {
     id: number;
@@ -13,7 +13,32 @@ export interface GetRecipe {
     adminId: number;
     category: RecipeCategory;
     pictures: string[];
-    products: GetProduct[];
+    products: GetIngredient[];
+}
+
+export interface CreateRecipe {
+    name: string;
+    content: string;
+    description: string;
+    duration: number;
+    numberOfPeople: number;
+    adminId: number;
+    category: RecipeCategory;
+    pictures: string[];
+    products: GetIngredient[];
+}
+
+export interface CreatedRecipe {
+    id: number; 
+    name: string;
+    content: string;
+    description: string;
+    duration: number;
+    numberOfPeople: number;
+    adminId: number;
+    category: RecipeCategory;
+    pictures: string[];
+    products: GetIngredient[];
 }
 
 export enum RecipeCategory {
