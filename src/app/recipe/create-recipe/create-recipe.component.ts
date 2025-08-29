@@ -97,12 +97,20 @@ export class CreateRecipeComponent {
       return;
     }
 
-    const ingredients: GetIngredient[] = this.ingredients.controls.map((control, index) => ({
-      id: index + 1,  
-      name: control.get('name')?.value || '',
-      quantity: Number(control.get('quantity')?.value) || 0,
-      unit: control.get('unit')?.value || ''
-    }));
+    const ingredients: GetIngredient[] = this.ingredients.controls
+      .filter(control => {
+        const name = control.get('name')?.value?.trim();
+        const quantity = Number(control.get('quantity')?.value);
+        const unit = control.get('unit')?.value?.trim();
+
+        return name || quantity || unit; 
+      })
+      .map((control, index) => ({
+        id: index + 1,
+        name: control.get('name')?.value || '',
+        quantity: Number(control.get('quantity')?.value) || 0,
+        unit: control.get('unit')?.value || ''
+      }));
 
     const recipeData: CreateRecipe = {
       name: this.recipeForm.value.title,
