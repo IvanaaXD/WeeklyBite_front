@@ -115,7 +115,7 @@ export class CreateRecipeComponent {
     const recipeData: CreateRecipe = {
       name: this.recipeForm.value.title,
       content: this.recipeForm.value.content,
-      description: this.stateService.getRecipe()?.description || '',
+      description: this.stateService.getRecipe()?.description || [],
       duration: this.recipeForm.value.duration,
       numberOfPeople: this.recipeForm.value.people,
       adminId: Number(this.authService.getUserIdFromToken()), 

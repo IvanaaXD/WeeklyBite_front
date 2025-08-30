@@ -6,7 +6,7 @@ export interface GetRecipe {
     updated: Date;
     name: string;
     content: string;
-    description: string;
+    description: Step[];
     duration: number;
     numberOfPeople: number;
     isDeleted: boolean;
@@ -19,7 +19,7 @@ export interface GetRecipe {
 export interface CreateRecipe {
     name: string;
     content: string;
-    description: string;
+    description: Step[];
     duration: number;
     numberOfPeople: number;
     adminId: number;
@@ -32,13 +32,20 @@ export interface CreatedRecipe {
     id: number; 
     name: string;
     content: string;
-    description: string;
+    description: Step[];
     duration: number;
     numberOfPeople: number;
     adminId: number;
     category: RecipeCategory;
     pictures: string[];
     products: GetIngredient[];
+}
+
+export class Step {
+  constructor(
+    public name: string,
+    public description: string
+  ) {}
 }
 
 export enum RecipeCategory {

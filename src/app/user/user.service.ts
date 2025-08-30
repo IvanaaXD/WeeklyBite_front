@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from '../../env/environment';
 import { AuthService } from '../infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CreateUserDTO } from './model/user.model';
+import { CreateUserDTO, User } from './model/user.model';
 
 export interface Account {
   id: number;
@@ -22,9 +22,6 @@ export interface Account {
 })
 
 export class UserService {
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
   
   private apiUrl = environment.apiHost + '/api';
 //  private user: CreateUserDTO;
@@ -128,28 +125,26 @@ init(authService: AuthService):void {
 //     }
 //   }
 
-//   getUserDetails(currentUserEmail: string): Observable<User> {
-//     if (currentUserEmail != null) {
-//       console.log(currentUserEmail);
-//       return this.http
-//         .get<any>(`${environment.apiHost}/api/users/search?email=${currentUserEmail}`, {
-//           headers: this.headers,
-//       })
-//       .pipe(
-//         map((userResponse) => {
-//           return {
-//             id: userResponse.id,
-//             firstName: userResponse.firstName,
-//             lastName: userResponse.lastName,
-//             email: currentUserEmail
-//           } as User;
-//         })
-//       );
-//   } else {
-//     console.error('ID korisnika nije pronađen u JWT tokenu.');
-//     throw new Error('ID korisnika nije pronađen u JWT tokenu.');
-//   }
-// }
+  getUserDetails(currentUserEmail: string): Observable<User> {
+    if (currentUserEmail != null) {
+      console.log(currentUserEmail);
+      return this.http
+        .get<any>(`${environment.apiHost}/api/users/search?email=${currentUserEmail}`)
+      .pipe(
+        map((userResponse) => {
+          return {
+            id: userResponse.id,
+            firstName: userResponse.firstName,
+            lastName: userResponse.lastName,
+            email: currentUserEmail
+          } as User;
+        })
+      );
+  } else {
+    console.error('ID korisnika nije pronađen u JWT tokenu.');
+    throw new Error('ID korisnika nije pronađen u JWT tokenu.');
+  }
+}
 
 //   getAccountByEmail(email: string): Observable<any> {
 //     return this.http.get<any>(`${this.apiUrl}/accounts/search?email=${encodeURIComponent(email)}`);

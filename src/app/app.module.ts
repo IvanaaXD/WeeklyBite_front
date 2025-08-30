@@ -12,6 +12,7 @@ import { I18nPluralPipe } from '@angular/common';
 import { Interceptor } from './infrastructure/auth/interceptor';
 import { UserModule } from './user/user.module';
 import { RecipeModule } from './recipe/recipe.module';
+import { CommentModule } from './comment/comment.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RecipeModule } from './recipe/recipe.module';
     LayoutModule,
     RecipeModule,
     ReactiveFormsModule,
-    UserModule
+    UserModule,
+    CommentModule
   ],
   providers: [
     I18nPluralPipe,

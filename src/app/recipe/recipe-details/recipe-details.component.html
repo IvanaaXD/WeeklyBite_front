@@ -1,1 +1,83 @@
-<p>recipe-details works!</p>
+<div class="recipe-details-container">
+
+  <!-- Carousel + Favorites -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <button class="prev" (click)="prevImage()">&#10094;</button>
+      <div class="carousel-images">
+        <img [src]="imageUrls[currentImageIndex]" *ngIf="imageUrls.length > 0" />
+        <div *ngIf="imageUrls.length === 0" class="no-images-placeholder">
+          No images available for this recipe.
+        </div>
+      </div>
+      <button class="next" (click)="nextImage()">&#10095;</button>
+    </div>
+
+    <!-- Favorites -->
+    <div class="add-favorites-container">
+      <button class="add-favorites" (click)="toggleFavorite()">
+        Add to favorites
+        <span [class]="isFavorite ? 'star active' : 'star'">&#9733;</span>
+      </button>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="ingredients-container">
+      <h3>Ingredients</h3>
+      <ul>
+        <li *ngFor="let ingredient of recipe.products">
+          {{ingredient.name}}: <strong>{{ingredient.quantity}} {{ingredient.unit}}</strong>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="recipe-actions" *ngIf="isLoggedIn">
+      <button class="add-menu" *ngIf="!isAdmin">Add recipe to weekly menu</button>
+
+      <div class="edit-delete-group" *ngIf="isAdmin">
+        <button class="edit-recipe">Edit recipe</button>
+        <button class="delete-recipe">Delete recipe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Preparation Steps -->
+  <div class="preparation-container">
+    <h2>Preparation</h2>
+
+    <div *ngFor="let step of recipe.description" class="step">
+      <h4>{{step.name}}</h4>
+      <p>{{step.description}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Comments Section -->
+<div class="comments-container">
+  <h2>Comments</h2>
+  <div class="comments">
+    <div class="comment" *ngFor="let comment of showComments">
+      <div class="comment-header">
+        <img [src]="comment.avatar" alt="Profile Picture" class="comment-avatar" />
+        <strong class="comment-author">{{ comment.author }}</strong>
+      </div>
+      <p class="comment-text">{{ comment.text }}</p>
+      <div class="comment-footer">
+        <span>Recipe: {{ comment.recipe }}</span>
+        <span>Category: {{ comment.category }}</span>
+        <span class="comment-stars">
+          <ng-container *ngFor="let star of getStars(comment.rating)">⭐</ng-container>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to Add Comment -->
+  <button 
+    class="add-comment" 
+    (click)="openCommentPopup()">
+    Add Comment
+  </button>
+</div>

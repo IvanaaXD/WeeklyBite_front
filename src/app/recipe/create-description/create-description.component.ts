@@ -5,6 +5,7 @@ import { RecipeStateService } from '../recipe-state.service';
 import { IngredientService } from '../../ingredient/ingredient.service';
 import { RecipeService } from '../recipe.service';
 import { forkJoin } from 'rxjs';
+import { Step } from '../model/recipe.model';
 
 @Component({
   selector: 'app-create-description',
@@ -26,15 +27,13 @@ export class CreateDescriptionComponent {
 
     let initialSteps: any[] = [];
 
-    if (state?.description && state.description.trim() !== '') {
-      const regex = /<b>(.*?)<\/b>([^<]*)/g;
-      let match;
-      while ((match = regex.exec(state.description)) !== null) {
-        initialSteps.push(this.fb.group({
-          name: [match[1] || ''],
-          description: [match[2].trim() || '']
-        }));
-      }
+    if (state && Array.isArray(state.description) && state.description.length > 0) {
+      initialSteps = state.description.map((step: any) =>
+        this.fb.group({
+          name: [step.name || ''],
+          description: [step.description || '']
+        })
+      );
     }
 
     if (initialSteps.length === 0) {
@@ -118,16 +117,11 @@ export class CreateDescriptionComponent {
   setDescription() {
     const state = this.stateService.getRecipe();
     if (state) {
-      const stepsHtml = this.preparationForm.value.steps
-        .map((step: { name: string; description: string }) => {
-          const nameHtml = step.name ? `<b>${step.name}</b>` : '';
-          const descHtml = step.description ? ` ${step.description}` : '';
-          return nameHtml + descHtml;
-        })
-        .join('<br>'); 
+      const steps: Step[] = this.preparationForm.value.steps
+        .filter((s: { name: string; description: string }) => s.name?.trim() && s.description?.trim())
+        .map((s: { name: string; description: string }) => new Step(s.name.trim(), s.description.trim()));
 
-      state.description = stepsHtml;
-
+      state.description = steps;
       this.stateService.setRecipe(state);
     }
   }
