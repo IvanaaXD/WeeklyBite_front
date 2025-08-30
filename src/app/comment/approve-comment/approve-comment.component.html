@@ -1,0 +1,51 @@
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<div class="comments-section">
+    <h2>Comments</h2>
+    <div *ngIf="noComments" class="comment-card user-info">
+      <p>No new comments have arrived yet. All other comments have been deleted.</p>
+      
+    </div>
+    <div class="comment-card" *ngFor="let comment of comments">
+      <div class="comment-header">
+        <img
+          src="{{ comment.avatar || 'assets/images/john_doe.jpg' }}"
+          alt="User Avatar"
+          class="avatar"
+          (click)="openUserCard(comment.email, comment.userFullName)"
+        />
+        <div class="user-info">
+          <h3>{{ comment.userFullName }}</h3>
+          <h5>{{ comment.email }}</h5>
+          <p>{{ comment.content }}</p>
+        </div>
+      </div>
+      <div class="row">
+      <div class="comment-details">
+        <p class="service"><strong>Recipe:</strong> {{ comment.recipe }}</p>
+        <p class="category"><strong>Category:</strong> {{ comment.category }}</p>
+      </div>
+        <div class="comment-actions">
+          <button
+          *ngIf="comment.commentStatus !== 'APPROVED'"
+          (click)="approve(comment.id, comment.commentStatus)" 
+          class="approve-btn"
+        >
+          Approve
+        </button>
+        <button
+          *ngIf="comment.commentStatus === 'APPROVED'"
+          class="approve-btn approved"
+          disabled
+        >
+          Approved <i class="fa fa-check"></i>
+        </button>
+        <button (click)="delete(comment.id, comment.content)" class="delete-btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

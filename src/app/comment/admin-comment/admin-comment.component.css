@@ -1,0 +1,79 @@
+.table-container {
+  margin: 20px;
+  overflow: auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+
+.buttons button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.approve-button {
+  background-color: #44c55e;
+}
+
+.approve-button:hover {
+  background-color: #3cb142;
+}
+
+.delete-button {
+  background-color: #e43838;
+}
+
+.delete-button:hover {
+  background-color: #be2727;
+}
+
+h2 {
+  text-align: center;
+  color: #007BFF;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+td.mat-cell {
+  vertical-align: top;
+  white-space: normal;
+  line-height: 1.4;
+  max-height: 5em;
+  overflow: hidden;
+}
+
+td.mat-cell.content-cell {
+  max-width: 300px;
+}
+
+table.mat-table {
+  width: 100%;
+  border-spacing: 0 10px; /* dodatni vertikalni razmak između redova */
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 12px 24px; 
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.content-cell {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  line-height: 1.6;
+}
+.deleted-row {
+  background-color: #f0f0f0;
+  color: #999;
+  pointer-events: none; 
+  opacity: 0.6;
+}
