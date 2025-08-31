@@ -1,8 +1,7 @@
 .add-comment-container {
     width: 400px;
     padding: 20px;
-    border: 2px solid #628eef;
-    border-radius: 15px;
+    border: 2px solid #b46f6f;
     background-color: #fff;
     font-family: 'Arial', sans-serif;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -15,7 +14,7 @@
 }
 
 .add-comment-container h2 {
-    color: #628eef;
+    color: #b46f6f;
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -30,15 +29,14 @@
 
 label {
     font-size: 16px;
-    color: #628eef;
+    color: #b46f6f;
     margin-bottom: 5px;
     display: block;
 }
 
 textarea {
     width: 100%;
-    border: 2px solid #628eef;
-    border-radius: 10px;
+    border: 2px solid #b46f6f;
     padding: auto;
     font-size: 14px;
     font-family: 'Arial', sans-serif;
@@ -47,7 +45,7 @@ textarea {
 
 textarea:focus {
     outline: none;
-    border-color: #0056b3;
+    border-color: #b46f6f;
 }
 
 .rating {
@@ -84,25 +82,24 @@ textarea:focus {
 .back-button {
     width: 100%;
     margin-bottom: 10px;
-    background-color: #628eef;
+    background-color: #b46f6f;
     color: white;
     font-size: 16px;
     padding: 10px 0;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .add-button:hover,
 .back-button:hover {
-    background-color: #0056b3;
+    background-color: #b46f6f;
 }
 
 .back-button {
     background-color: white;
-    color: #628eef;
-    border: 2px solid #628eef;
+    color: #b46f6f;
+    border: 2px solid #b46f6f;
 }
 
 .back-button:hover {

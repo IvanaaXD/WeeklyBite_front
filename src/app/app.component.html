@@ -1,4 +1,10 @@
 <app-nav-bar-au *ngIf="isLoggedIn"></app-nav-bar-au>
 <app-nav-bar *ngIf="!isLoggedIn"></app-nav-bar>
-<router-outlet></router-outlet>
+
+<div class="main-content">
+  <div class="page-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
 <app-footer></app-footer>

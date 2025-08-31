@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, map, of, switchMap, throwError } from 'rxjs';
-import { RecipeService } from '../recipe.service';
-import { GetRecipe, RecipeCategory, Step } from '../model/recipe.model';
-import { CreateComment, GetComment, ShowComment } from '../../comment/model/comment.model';
-import { CommentService } from '../../comment/comment.service';
-import { GetIngredient } from '../../ingredient/ingredient.model';
-import { AuthService } from '../../infrastructure/auth/auth.service';
-import { CreateCommentComponent } from '../../comment/create-comment/create-comment.component';
-import { User } from '../../user/model/user.model';
-import { UserService } from '../../user/user.service';
+import { Component } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { ActivatedRoute, Router } from "@angular/router";
+import { catchError, throwError, switchMap, map, of, tap } from "rxjs";
+import { CommentService } from "../../comment/comment.service";
+import { CreateCommentComponent } from "../../comment/create-comment/create-comment.component";
+import { ShowComment, GetComment, CreateComment } from "../../comment/model/comment.model";
+import { AuthService } from "../../infrastructure/auth/auth.service";
+import { GetIngredient } from "../../ingredient/ingredient.model";
+import { User } from "../../user/model/user.model";
+import { UserService } from "../../user/user.service";
+import { Step, RecipeCategory, GetRecipe } from "../model/recipe.model";
+import { RecipeService } from "../recipe.service";
 
 @Component({
   selector: 'app-recipe-details',
@@ -95,7 +95,6 @@ export class RecipeDetailsComponent {
           email: data.email,
           role: data.role,
         };
-        console.log('Logged-in user:', this.user);
       }})        
 
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -111,38 +110,28 @@ export class RecipeDetailsComponent {
   private loadRecipeAndComments(): void {
     this.recipeService.getRecipeById(this.recipeId).pipe(
       switchMap((foundedRecipe: GetRecipe) => {
-
         this.imageUrls = foundedRecipe.pictures || [];
         this.calculateCarouselSize();
-
         this.adminId = foundedRecipe.adminId;
+        this.recipe = { ...foundedRecipe };
 
-        this.recipe = {
-          id: foundedRecipe.id,
-          name: foundedRecipe.name,
-          content: foundedRecipe.content,
-          description: foundedRecipe.description,
-          duration: foundedRecipe.duration,
-          numberOfPeople: foundedRecipe.numberOfPeople,
-          adminId: foundedRecipe.adminId,
-          category: foundedRecipe.category,
-          pictures: foundedRecipe.pictures,
-          products: foundedRecipe.products
-        };
-
-        return this.commentService.getCommentsByRecipeId(this.recipeId).pipe(
-          map((fetchedGetComments: GetComment[]) => {
-            this.comments = fetchedGetComments;
-            return fetchedGetComments.map(getComment => ({
-              author: getComment.userFullName,
-              avatar: 'assets/images/default-avatar.png',
-              text: getComment.content,
-              recipe: '',
-              category: this.recipe.category.toString(),                
-              rating: 0
-            } as ShowComment));
-          })
+        return this.userService.getFavoriteRecipes().pipe(
+          tap((favoriteRecipes: GetRecipe[]) => {
+            this.isFavorite = favoriteRecipes?.some(recipe => recipe.id === this.recipeId) ?? false;
+          }),
+          switchMap(() => this.commentService.getCommentsByRecipeId(this.recipeId))
         );
+      }),
+      map((fetchedGetComments: GetComment[]) => {
+        this.comments = fetchedGetComments;
+        return fetchedGetComments.map(getComment => ({
+          author: getComment.userFullName,
+          avatar: 'assets/images/default-avatar.png',
+          text: getComment.content,
+          recipe: '',
+          category: this.recipe.category.toString(),
+          rating: 0
+        } as ShowComment));
       }),
       catchError(error => {
         console.error('Error fetching recipe or comments:', error);
@@ -151,9 +140,9 @@ export class RecipeDetailsComponent {
       })
     ).subscribe((mappedShowComments: ShowComment[]) => {
       this.showComments = mappedShowComments;
-      console.log('Fetched and mapped comments:', this.showComments);
     });
   }
+
 
   calculateCarouselSize(): void {
     if (this.imageUrls.length === 0) {
@@ -189,12 +178,23 @@ export class RecipeDetailsComponent {
 
   toggleFavorite(): void {
     this.isFavorite = !this.isFavorite;
+    this.addToFavorites();
   }
+
 
   addToFavorites() {
-    console.log('Added to favorites');
-  }
+    this.isFavorite = !this.isFavorite;
 
+    this.userService.addToFavoriteRecipes(this.recipe.id).pipe(
+      tap((isAdded) => {
+        window.location.reload(); 
+      }),
+      catchError((error) => {
+        console.error('Error while adding/removing recepie from favorites:', error);
+        return of(null); 
+      })
+    ).subscribe();
+  }
 
   openCommentPopup(): void {
     const dialogRef = this.dialog.open(CreateCommentComponent, {
@@ -215,7 +215,7 @@ export class RecipeDetailsComponent {
         };
 
         this.commentService.add(createComment).subscribe({
-          next: (savedComment) => console.log('Comment saved:', savedComment),
+          next: (savedComment) => {}, // uklonjeno console.log
           error: (err) => {
             console.error('Failed to save comment:', err);
             alert('Failed to add comment. Please try again.');
@@ -227,7 +227,6 @@ export class RecipeDetailsComponent {
 
   addComment(newComment: { text: string, rating: number }): void {
     if (!this.userEmail) {
-      console.warn('Cannot add comment: User not logged in or user ID is missing.');
       alert('You must be logged in to add a comment.');
       return;
     }
@@ -242,10 +241,6 @@ export class RecipeDetailsComponent {
         rating: newComment.rating
       };
       this.showComments.push(commentToAdd);
-      console.log('New comment added:', commentToAdd);
-
-    } else {
-      console.warn('Cannot add comment: newComment data is missing.');
     }
   }
 

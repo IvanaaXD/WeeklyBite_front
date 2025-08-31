@@ -1,44 +1,52 @@
 .table-container {
   margin: 20px;
   overflow: auto;
+  min-height: 60vh;
+}
+
+tr.mat-row {
+  background-color: #f6efef; 
 }
 
 .buttons {
   display: flex;
-  justify-content: left;
+  justify-content: right;
   gap: 10px;
   margin-bottom: 20px;
+  margin-right: 100px;
 }
-
 
 .buttons button {
   padding: 10px 20px;
   font-size: 1rem;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   color: white;
 }
 
 .approve-button {
-  background-color: #44c55e;
+  background-color: #812B2B;
 }
 
 .approve-button:hover {
-  background-color: #3cb142;
+  background-color: #762828;
 }
 
 .delete-button {
-  background-color: #e43838;
+  background-color: #b46f6f;
 }
 
 .delete-button:hover {
-  background-color: #be2727;
+  background-color: #a76767;
+}
+
+ng-container {
+  background-color: #f0f0f0;
 }
 
 h2 {
   text-align: center;
-  color: #007BFF;
+  color: #812B2B;
   font-family: Arial, sans-serif;
   margin-bottom: 20px;
 }
@@ -49,15 +57,18 @@ td.mat-cell {
   line-height: 1.4;
   max-height: 5em;
   overflow: hidden;
+  background-color: #f6efef;
 }
 
 td.mat-cell.content-cell {
   max-width: 300px;
+  background-color: #f6efef;
 }
 
 table.mat-table {
   width: 100%;
-  border-spacing: 0 10px; /* dodatni vertikalni razmak između redova */
+  border-spacing: 0 10px; 
+  background-color: #f6efef;
 }
 
 .mat-header-cell, .mat-cell {
@@ -71,6 +82,7 @@ table.mat-table {
   padding-bottom: 20px;
   line-height: 1.6;
 }
+
 .deleted-row {
   background-color: #f0f0f0;
   color: #999;

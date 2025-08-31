@@ -34,16 +34,15 @@
     background-color: #ffffff;
     padding: 2vw;
     padding-right: 3.2vw;
-    border-radius: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 100%;
-    border: 2px solid #628EEF;
+    border: 2px solid #b46f6f;
    
   }
   
   .form-box h2 {
-    color: #5a66d8;
+    color: #b46f6f;
     font-size: 27px;
     font-weight: 500;
     margin-bottom: 20px;
@@ -58,20 +57,19 @@
   
   .confirm-btn,
   .cancel-btn {
-    background-color: #628EEF;
+    background-color: #b46f6f;
     color: #ffffff;
     width: 45%;
     padding: 10px;
     border: none;
-    border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
   }
   
   .cancel-btn {
     background-color: transparent;
-    color: #628EEF;
-    border: 1px solid #628EEF;
+    color: #b46f6f;
+    border: 1px solid #b46f6f;
   }
   
   .confirm-btn:hover,

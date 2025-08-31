@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommentService } from '../../comment/comment.service';
+import { AuthService } from '../../infrastructure/auth/auth.service';
+import { UserService } from '../../user/user.service';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipes-page',
@@ -9,15 +14,24 @@ import { Router } from '@angular/router';
 export class RecipesPageComponent {
    
   recipeFilters: any = {};
+  isAdmin: boolean = false;
+
+  constructor(
+      private authService: AuthService,
+      private userService: UserService,
+      private router: Router
+    ) { }
 
   onFiltersChanged(filters: any): void {
     this.recipeFilters = filters;
   }
-  ngOnInit(){
-    document.body.style.overflow = "auto"; 
-  }
 
-  constructor(public router: Router) {} 
+  ngOnInit() : void{
+    document.body.style.overflow = "auto"; 
+
+    const role = this.authService.getRole();
+    this.isAdmin = role === 'ROLE_ADMIN';
+  }
 
   openDialog(): void {
     this.router.navigate(['/create-recipe']); 
