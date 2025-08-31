@@ -5,6 +5,7 @@ import { CreateRecipe } from './model/recipe.model';
 export class RecipeStateService {
   private recipeData: CreateRecipe | null = null;
   private recipePictures: File[] = []; 
+  private recipeId: number = -1;
 
   setRecipe(data: CreateRecipe) {
     this.recipeData = data;
@@ -28,6 +29,18 @@ export class RecipeStateService {
 
   clearPictures() {
     this.recipePictures = [];
+  }
+
+  setRecipeId(id: number) {
+    this.recipeId = id;
+  }
+
+  getRecipeId(): number {
+    return this.recipeId;
+  }
+
+  clearRecipeId() {
+    this.recipeId = -1;
   }
 }
 

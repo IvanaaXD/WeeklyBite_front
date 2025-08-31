@@ -143,17 +143,18 @@ export class RecipeDetailsComponent {
     });
   }
 
-
   calculateCarouselSize(): void {
     if (this.imageUrls.length === 0) {
       this.carouselWidth = 0;
       this.carouselHeight = 0;
       return;
     }
+
     const promises = this.imageUrls.map(src => this.getImageSize(src));
     Promise.all(promises).then(sizes => {
-      this.carouselWidth = Math.max(...sizes.map(size => size.width));
-      this.carouselHeight = Math.max(...sizes.map(size => size.height));
+      // Nađi maksimalnu širinu i visinu
+      this.carouselWidth = Math.max(...sizes.map(s => s.width));
+      this.carouselHeight = Math.max(...sizes.map(s => s.height));
     });
   }
 
@@ -162,7 +163,7 @@ export class RecipeDetailsComponent {
       const img = new Image();
       img.src = src;
       img.onload = () =>
-        resolve({ width: img.naturalWidth * 7 / 10, height: img.naturalHeight * 7 / 10 });
+        resolve({ width: img.naturalWidth, height: img.naturalHeight });
     });
   }
 
@@ -246,5 +247,9 @@ export class RecipeDetailsComponent {
 
   getStars(rating: number): number[] {
     return Array(rating).fill(0);
+  }
+
+  openEditPopup(): void {
+    this.router.navigate(['/update-recipe', this.recipeId]); 
   }
 }

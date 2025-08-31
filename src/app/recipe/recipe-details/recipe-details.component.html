@@ -36,7 +36,7 @@
       <button class="add-menu" *ngIf="!isAdmin">Add recipe to weekly menu</button>
 
       <div class="edit-delete-group" *ngIf="isAdmin">
-        <button class="edit-recipe">Edit recipe</button>
+        <button class="edit-recipe" (click)="openEditPopup()">Edit recipe</button>
         <button class="delete-recipe">Delete recipe</button>
       </div>
     </div>
@@ -47,11 +47,18 @@
   <div class="preparation-container">
     <h2>Preparation of "{{recipe.name}}"</h2>
 
+    <!-- Duration & Number of people -->
+    <div class="recipe-meta">
+      <div class="duration">⏱ Duration: {{recipe.duration}} min</div>
+      <div class="people">👥 Serves: {{recipe.numberOfPeople}} people</div>
+    </div>
+
     <div *ngFor="let step of recipe.description" class="step">
       <h4>{{step.name}}</h4>
       <p>{{step.description}}</p>
     </div>
   </div>
+
 </div>
 
 <!-- Comments Section -->

@@ -5,7 +5,7 @@
   </div>
 
   <div class="list-add">
-    <div class="add-btn-container" *ngIf="!isAdmin">
+    <div class="add-btn-container" *ngIf="isAdmin">
       <button class="add-recipe" (click)="openDialog()">Add new recipe</button>
     </div>
 

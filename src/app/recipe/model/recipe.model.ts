@@ -41,6 +41,18 @@ export interface CreatedRecipe {
     products: GetIngredient[];
 }
 
+export interface UpdateRecipe {
+    id: number;
+    name: string;
+    content: string;
+    description: Step[];
+    duration: number;
+    numberOfPeople: number;
+    category: RecipeCategory;
+    pictures: string[];
+    products: GetIngredient[];
+}
+
 export class Step {
   constructor(
     public name: string,

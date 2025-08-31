@@ -15,7 +15,7 @@
 
 .carousel {
   position: relative;
-  width: 100%;
+  max-width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +144,9 @@ button.next:hover {
 
 .preparation-container {
   flex-basis: 55%;
+  background-color: #F6EFEF;
+  padding: 2% 2%;
+  margin-right: 5%;
 }
 
 .preparation-container h2 {
@@ -166,6 +169,14 @@ button.next:hover {
 .step p {
   font-size: 15px;
   line-height: 1.5;
+}
+
+.recipe-meta {
+  text-align: left;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
 .comments-container {

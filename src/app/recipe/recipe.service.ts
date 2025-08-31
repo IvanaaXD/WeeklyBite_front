@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../env/environment";
-import { CreatedRecipe, CreateRecipe, GetRecipe } from "./model/recipe.model";
+import { CreatedRecipe, CreateRecipe, GetRecipe, UpdateRecipe } from "./model/recipe.model";
 import { Observable } from "rxjs";
 import { PagedResponse } from "../shared/paged-response.model";
 
@@ -27,8 +27,16 @@ export class RecipeService {
     return this.httpClient.post<CreatedRecipe>(this.apiUrl, formData);
   }
 
-  update(recipe: CreateRecipe): Observable<CreatedRecipe> {
-    return this.httpClient.put<CreatedRecipe>(this.apiUrl, recipe);
+  update(recipe: UpdateRecipe, pictures?: File[]): Observable<GetRecipe> {
+    const formData = new FormData();
+    formData.append('recipe', new Blob([JSON.stringify(recipe)], { type: 'application/json' }));
+
+    if (pictures && pictures.length > 0) {
+      pictures.forEach((file: File) => {
+        formData.append('pictures', file, file.name);
+      });
+    }
+    return this.httpClient.put<GetRecipe>(`${this.apiUrl}/${recipe.id}`, formData);
   }
 
   getRecipeById(id: number): Observable<GetRecipe> {
