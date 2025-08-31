@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../env/environment";
 import { CreatedRecipe, CreateRecipe, GetRecipe, UpdateRecipe } from "./model/recipe.model";
-import { Observable } from "rxjs";
+import { catchError, Observable, throwError } from "rxjs";
 import { PagedResponse } from "../shared/paged-response.model";
 
 @Injectable({
@@ -37,6 +37,15 @@ export class RecipeService {
       });
     }
     return this.httpClient.put<GetRecipe>(`${this.apiUrl}/${recipe.id}`, formData);
+  }
+
+  delete(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiUrl}/${id}`).pipe(
+      catchError(error => {
+        console.error('Error deleting recipe:', error);
+        return throwError(() => new Error('Failed to delete comment'));
+      })
+    );
   }
 
   getRecipeById(id: number): Observable<GetRecipe> {

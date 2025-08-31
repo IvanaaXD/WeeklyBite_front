@@ -11,6 +11,7 @@ import { User } from "../../user/model/user.model";
 import { UserService } from "../../user/user.service";
 import { Step, RecipeCategory, GetRecipe } from "../model/recipe.model";
 import { RecipeService } from "../recipe.service";
+import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component";
 
 @Component({
   selector: 'app-recipe-details',
@@ -251,5 +252,23 @@ export class RecipeDetailsComponent {
 
   openEditPopup(): void {
     this.router.navigate(['/update-recipe', this.recipeId]); 
+  }
+
+  openDeletePopup(): void {
+
+    const dialogRef = this.dialog.open(DeleteRecipeComponent, {
+      width: '400px',
+      data: {
+        id: this.recipeId,
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.recipeService.delete(this.recipeId).subscribe(() => {
+          this.router.navigate(['/recipes']);
+        });
+      }
+    });
   }
 }
