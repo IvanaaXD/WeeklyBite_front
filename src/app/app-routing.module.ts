@@ -7,6 +7,8 @@ import { RecipeDetailsComponent } from './recipe/recipe-details/recipe-details.c
 import { RecipesPageComponent } from './recipe/recipes-page/recipes-page.component';
 import { CreateRecipeComponent } from './recipe/create-recipe/create-recipe.component';
 import { CreateDescriptionComponent } from './recipe/create-description/create-description.component';
+import { AdminCommentComponent } from './comment/admin-comment/admin-comment.component';
+import { AuthGuard } from './infrastructure/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,8 +18,9 @@ const routes: Routes = [
   { path: 'recipe/:id', component: RecipeDetailsComponent },
   { path: 'recipes', component: RecipesPageComponent},
   { path: 'create-recipe', component: CreateRecipeComponent},
-  { path: 'create-description', component: CreateDescriptionComponent}
-];
+  { path: 'create-description', component: CreateDescriptionComponent},
+  { path: 'comments', component:AdminCommentComponent, canActivate: [AuthGuard],
+    data: { role: ['ADMIN'] }},];
 
 
 @NgModule({

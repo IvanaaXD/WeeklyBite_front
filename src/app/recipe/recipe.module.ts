@@ -8,12 +8,15 @@ import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { RecipesPageComponent } from './recipes-page/recipes-page.component';
 import { LayoutModule } from '../layout/layout.module';
 import { CreateDescriptionComponent } from './create-description/create-description.component';
+import { UserModule } from '../user/user.module';
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 
 @NgModule({
   declarations: [
     CreateRecipeComponent,
     RecipesPageComponent,
     CreateDescriptionComponent,
+    RecipeDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +25,8 @@ import { CreateDescriptionComponent } from './create-description/create-descript
     MaterialModule,
     AuthModule,
     FormsModule,
-    LayoutModule
+    LayoutModule,
+    UserModule
   ]
 })
 export class RecipeModule { }

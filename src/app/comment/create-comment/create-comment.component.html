@@ -1,0 +1,32 @@
+<div class="add-comment-container">
+  <h2>New comment</h2>
+  
+  <form>
+    <!-- Comment Textarea -->
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea id="commentText" rows="4" placeholder="Write your comment here..." #commentInput></textarea>
+    </div>
+
+    <!-- Rating Section -->
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <div id="rating" class="rating">
+          <span 
+            class="star" 
+            *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" 
+            [class.active]="i < rating" 
+            (click)="rate(i + 1)">
+            &#9733;
+          </span>
+        </div>          
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button type="button" class="add-button" (click)="addComment()">Add comment</button>
+      <button type="button" class="back-button" (click)="closePopup()">Back</button>
+    </div>
+  </form>
+</div>
+  

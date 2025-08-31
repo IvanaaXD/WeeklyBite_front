@@ -5,7 +5,8 @@ import { Observable, map } from 'rxjs';
 import { environment } from '../../env/environment';
 import { AuthService } from '../infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CreateUserDTO } from './model/user.model';
+import { CreateUserDTO, User } from './model/user.model';
+import { GetRecipe } from '../recipe/model/recipe.model';
 
 export interface Account {
   id: number;
@@ -22,9 +23,6 @@ export interface Account {
 })
 
 export class UserService {
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
   
   private apiUrl = environment.apiHost + '/api';
 //  private user: CreateUserDTO;
@@ -32,53 +30,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-init(authService: AuthService):void {
-    
-}
-//   init(authService: AuthService): void {
-//     const email = authService.getUserEmailFromToken();
+  init(authService: AuthService):void {
+      
+  }
 
-//   if (email) {
-//     this.setUserDataForPUP({
-//       email: email,
-//       firstName: '',
-//       lastName: '',
-//       profilePicture: '',
-//       birthLocation: undefined,
-//       phoneNumber: '',
-//       password: '',
-//       confirmPassword: '',
-//       role: '',
-//       agency: undefined
-//     });
-//   } else {
-//     console.warn("Nema emaila u tokenu, korisnik nije inicijalizovan.");
-//   }
-// }
-
-//   initializeUserEmail(authService: AuthService): void {
-//     const email = authService.getUserEmailFromToken();
-//     if (email) {
-//       this.setUserDataForPUP({
-//         email: email,
-//         firstName: '',
-//         lastName: '',
-//         profilePicture: '',
-//         birthLocation: undefined,
-//         phoneNumber: '',
-//         password: '',
-//         confirmPassword: '',
-//         role: '',
-//         agency: undefined
-//       });
-//     } else {
-//       console.error('Email nije pronađen u tokenu.');
-//     }
-//   }
-
-//   getLoggedInUser() {
-//     return '';
-//   }
 
   registerUser(userData: CreateUserDTO, profilePictureFile: File | null, agencyPictures: File[] = []): Observable<any> {
     const formData = new FormData();
@@ -98,58 +53,26 @@ init(authService: AuthService):void {
     return this.http.post<any>(`${this.apiUrl}/users`, formData);
   }
 
-// //   setUserDataForPUP(userData: CreateUserDTO) {
-// //     this.user = userData
-// //   }
-
-// //   getUserDataForPUP(){
-// //     return { ...this.user };
-// //   }
-
-// //   setUserDetailsForPUP(userData: CreateUserDTO, profilePicture: File | null) {
-// //     this.user = userData
-// //     this.pupProfilePictureFile = profilePicture
-// //   }
-// //   getUserDetailsForPUP(): { userData: CreateUserDTO | null, profilePicture: File | null } {
-// //     return {
-// //       userData: this.user,
-// //       profilePicture: this.pupProfilePictureFile
-// //     };
-// //   }
-
-//   getLoggedInUserRoles(): string[] {
-//     if (this.user) {
-//       const accessToken: any = localStorage.getItem('currentAppUser');
-//       const helper = new JwtHelperService();
-//       return helper.decodeToken(accessToken).role;
-//     } else {
-//       console.error('Korisnik nema role.')
-//       return ['']
-//     }
-//   }
-
-//   getUserDetails(currentUserEmail: string): Observable<User> {
-//     if (currentUserEmail != null) {
-//       console.log(currentUserEmail);
-//       return this.http
-//         .get<any>(`${environment.apiHost}/api/users/search?email=${currentUserEmail}`, {
-//           headers: this.headers,
-//       })
-//       .pipe(
-//         map((userResponse) => {
-//           return {
-//             id: userResponse.id,
-//             firstName: userResponse.firstName,
-//             lastName: userResponse.lastName,
-//             email: currentUserEmail
-//           } as User;
-//         })
-//       );
-//   } else {
-//     console.error('ID korisnika nije pronađen u JWT tokenu.');
-//     throw new Error('ID korisnika nije pronađen u JWT tokenu.');
-//   }
-// }
+  getUserDetails(currentUserEmail: string): Observable<User> {
+    if (currentUserEmail != null) {
+      console.log(currentUserEmail);
+      return this.http
+        .get<any>(`${environment.apiHost}/api/users/search?email=${currentUserEmail}`)
+      .pipe(
+        map((userResponse) => {
+          return {
+            id: userResponse.id,
+            firstName: userResponse.firstName,
+            lastName: userResponse.lastName,
+            email: currentUserEmail
+          } as User;
+        })
+      );
+  } else {
+    console.error('ID korisnika nije pronađen u JWT tokenu.');
+    throw new Error('ID korisnika nije pronađen u JWT tokenu.');
+  }
+}
 
 //   getAccountByEmail(email: string): Observable<any> {
 //     return this.http.get<any>(`${this.apiUrl}/accounts/search?email=${encodeURIComponent(email)}`);
@@ -204,27 +127,11 @@ init(authService: AuthService):void {
 //     return this.http.get<boolean>(`${this.apiUrl}/accounts/me/has-future-commitments`);
 //   }
 
-//   updateMyAgencyInfo(request: UpdateAgencyRequest): Observable<AgencyInfo> {
-//     return this.http.put<AgencyInfo>(`${this.apiUrl}/agency`, request);
-//   }
-
-//   uploadAgencyPictures(files: File[]): Observable<void> {
-//     const formData = new FormData();
-//     files.forEach(file => {
-//       formData.append('pictures', file, file.name);
-//     });
-//     return this.http.post<void>(`${this.apiUrl}/agency/pictures`, formData);
-//   }
-
-//   getFavoriteEvents(): Observable<EventSummary[]> {
-//     return this.http.get<EventSummary[]>(`${this.apiUrl}/accounts/favorites/events`);
-//   }
-
-//   getFavoriteProducts(): Observable<ProductSummary[]> {
-//     return this.http.get<ProductSummary[]>(`${this.apiUrl}/accounts/favorites/products`);
-//   }
-
-//   getFavoriteServices(): Observable<ServiceSummary[]> {
-//     return this.http.get<ServiceSummary[]>(`${this.apiUrl}/accounts/favorites/services`);
-//   }
+  getFavoriteRecipes(): Observable<GetRecipe[]> {
+    return this.http.get<GetRecipe[]>(`${this.apiUrl}/accounts/favorites/recipes`);
+  }
+  
+  addToFavoriteRecipes(recipeId: number) {
+    return this.http.post(`${environment.apiHost}/api/accounts/favorites/${recipeId}`,null)
+  }
 }
