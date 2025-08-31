@@ -12,6 +12,7 @@ import { UserModule } from '../user/user.module';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { UpdateDescriptionComponent } from './update-description/update-description.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
+import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
     CreateDescriptionComponent,
     RecipeDetailsComponent,
     UpdateDescriptionComponent,
-    UpdateRecipeComponent
+    UpdateRecipeComponent,
+    DeleteRecipeComponent
   ],
   imports: [
     CommonModule,
