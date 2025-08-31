@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CreateRecipe } from '../model/recipe.model';
+import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../infrastructure/auth/auth.service';
 import { GetIngredient } from '../../ingredient/ingredient.model';
+import { CreateRecipe, UpdateRecipe } from '../model/recipe.model';
 import { RecipeStateService } from '../recipe-state.service';
+import { RecipeService } from '../recipe.service';
 
 @Component({
-  selector: 'app-create-recipe',
-  templateUrl: './create-recipe.component.html',
-  styleUrls: ['./create-recipe.component.css']
+  selector: 'app-update-recipe',
+  templateUrl: './update-recipe.component.html',
+  styleUrl: './update-recipe.component.css'
 })
-export class CreateRecipeComponent {
+export class UpdateRecipeComponent {
   recipeForm: FormGroup;
   categories: string[] = ['BREAKFAST', 'LUNCH', 'DINNER', 'DESSERT', 'SNACK'];
   selectedFiles: File[] = [];
+  recipeId: number = -1;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private stateService: RecipeStateService) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private stateService: RecipeStateService, private recipeService: RecipeService, private route: ActivatedRoute) {
     this.recipeForm = this.fb.group({
       title: ['', Validators.required],
       category: ['', Validators.required],
@@ -36,26 +38,41 @@ export class CreateRecipeComponent {
   }
 
   ngOnInit() {
-    const state = this.stateService.getRecipe();
-    if (state) {
-      this.recipeForm.patchValue({
-        title: state.name,
-        category: state.category,
-        content: state.content,
-        duration: state.duration,
-        people: state.numberOfPeople
-      });
+    this.recipeId = Number(this.route.snapshot.paramMap.get('id'));
 
-      const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;
-      ingredientsArray.clear();
-      state.products.forEach(prod => {
-        ingredientsArray.push(this.fb.group({
-          name: [prod.name],
-          quantity: [prod.quantity],
-          unit: [prod.unit]
-        }, { validators: this.ingredientValidator }));
+    const state = this.stateService.getRecipe();
+
+    if (state && this.stateService.getRecipeId() === this.recipeId) {
+      this.patchForm(state);
+    } else {
+      this.recipeService.getRecipeById(this.recipeId).subscribe({
+        next: (recipe) => {
+          this.stateService.setRecipe(recipe);
+          this.patchForm(recipe);
+        },
+        error: (err) => console.error(err)
       });
     }
+  }
+
+  private patchForm(recipe: any) {
+    this.recipeForm.patchValue({
+      title: recipe.name,
+      category: recipe.category,
+      content: recipe.content,
+      duration: recipe.duration,
+      people: recipe.numberOfPeople
+    });
+
+    const ingredientsArray = this.recipeForm.get('ingredients') as FormArray;
+    ingredientsArray.clear();
+    recipe.products.forEach((prod: { name: any; quantity: any; unit: any; }) => {
+      ingredientsArray.push(this.fb.group({
+        name: [prod.name],
+        quantity: [prod.quantity],
+        unit: [prod.unit]
+      }, { validators: this.ingredientValidator }));
+    });
   }
 
   addIngredient() {
@@ -126,8 +143,9 @@ export class CreateRecipeComponent {
 
     this.stateService.setRecipe(recipeData);
     this.stateService.setPictures(this.selectedFiles); 
+    this.stateService.setRecipeId(this.recipeId);
 
-    this.router.navigate(['/create-description']);
+    this.router.navigate(['/update-description', this.recipeId]);
   }
 
   goBack() {

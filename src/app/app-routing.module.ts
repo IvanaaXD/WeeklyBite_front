@@ -9,6 +9,8 @@ import { CreateRecipeComponent } from './recipe/create-recipe/create-recipe.comp
 import { CreateDescriptionComponent } from './recipe/create-description/create-description.component';
 import { AdminCommentComponent } from './comment/admin-comment/admin-comment.component';
 import { AuthGuard } from './infrastructure/auth/auth.guard';
+import { UpdateRecipeComponent } from './recipe/update-recipe/update-recipe.component';
+import { UpdateDescriptionComponent } from './recipe/update-description/update-description.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'recipe/:id', component: RecipeDetailsComponent },
   { path: 'recipes', component: RecipesPageComponent},
   { path: 'create-recipe', component: CreateRecipeComponent},
+  { path: 'update-recipe/:id', component: UpdateRecipeComponent },
+  { path: 'update-description/:id', component: UpdateDescriptionComponent },
   { path: 'create-description', component: CreateDescriptionComponent},
   { path: 'comments', component:AdminCommentComponent, canActivate: [AuthGuard],
     data: { role: ['ADMIN'] }},];

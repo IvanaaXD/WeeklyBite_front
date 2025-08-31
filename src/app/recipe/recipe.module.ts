@@ -10,13 +10,17 @@ import { LayoutModule } from '../layout/layout.module';
 import { CreateDescriptionComponent } from './create-description/create-description.component';
 import { UserModule } from '../user/user.module';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { UpdateDescriptionComponent } from './update-description/update-description.component';
+import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 
 @NgModule({
   declarations: [
     CreateRecipeComponent,
     RecipesPageComponent,
     CreateDescriptionComponent,
-    RecipeDetailsComponent
+    RecipeDetailsComponent,
+    UpdateDescriptionComponent,
+    UpdateRecipeComponent
   ],
   imports: [
     CommonModule,
