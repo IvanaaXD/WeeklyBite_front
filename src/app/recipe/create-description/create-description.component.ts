@@ -5,7 +5,7 @@ import { RecipeStateService } from '../recipe-state.service';
 import { IngredientService } from '../../ingredient/ingredient.service';
 import { RecipeService } from '../recipe.service';
 import { forkJoin } from 'rxjs';
-import { Step } from '../model/recipe.model';
+import { Step } from '../model/step.model';
 
 @Component({
   selector: 'app-create-description',
@@ -23,7 +23,6 @@ export class CreateDescriptionComponent {
     private recipeService: RecipeService
   ) {
     const state = this.stateService.getRecipe();
-    console.log(state);
 
     let initialSteps: any[] = [];
 
@@ -97,7 +96,6 @@ export class CreateDescriptionComponent {
 
           this.recipeService.add(state, pictures).subscribe({
             next: createdRecipe => {
-              console.log('Recipe created successfully:', createdRecipe);
               this.router.navigate(['/recipes']);
             },
             error: err => console.error(err)

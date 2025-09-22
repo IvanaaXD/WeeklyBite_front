@@ -33,7 +33,7 @@
 
     <!-- Actions -->
     <div class="recipe-actions" *ngIf="isLoggedIn">
-      <button class="add-menu" *ngIf="!isAdmin">Add recipe to weekly menu</button>
+      <button class="add-menu" *ngIf="!isAdmin && showAddToMenuButton" (click)="openAddPopup()">Add recipe to weekly menu</button>
 
       <div class="edit-delete-group" *ngIf="isAdmin">
         <button class="edit-recipe" (click)="openEditPopup()">Edit recipe</button>

@@ -3,9 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../infrastructure/auth/auth.service';
 import { GetIngredient } from '../../ingredient/ingredient.model';
-import { CreateRecipe, UpdateRecipe } from '../model/recipe.model';
 import { RecipeStateService } from '../recipe-state.service';
 import { RecipeService } from '../recipe.service';
+import { CreateRecipe } from '../model/create-recipe.model';
 
 @Component({
   selector: 'app-update-recipe',

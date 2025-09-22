@@ -59,7 +59,6 @@ export class RecipeListComponent implements OnInit{
       this.recipeService.getAll(this.pageProperties.page, this.pageProperties.pageSize)
       .subscribe(response => {
         this.recipes = response.content;
-                console.log(response.content)
 
         this.pageProperties.totalCount = response.totalElements;
         this.updatePagination();});

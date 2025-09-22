@@ -3,10 +3,11 @@ import { FormGroup, FormBuilder, FormArray, AbstractControl, ValidationErrors } 
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { IngredientService } from '../../ingredient/ingredient.service';
-import { RecipeCategory, Step } from '../model/recipe.model';
+import { RecipeCategory } from '../model/recipe.model';
 import { RecipeStateService } from '../recipe-state.service';
 import { RecipeService } from '../recipe.service';
-import { UpdateRecipe } from '../model/recipe.model';
+import { Step } from '../model/step.model';
+import { UpdateRecipe } from '../model/update-recipe.model';
 
 
 @Component({
@@ -27,8 +28,7 @@ export class UpdateDescriptionComponent {
   ) {
     const state = this.stateService.getRecipe();
     this.recipeId = this.stateService.getRecipeId();
-    console.log(state);
-    console.log(this.stateService.getPictures())
+
     let initialSteps: any[] = [];
 
     if (state && Array.isArray(state.description) && state.description.length > 0) {
@@ -103,7 +103,6 @@ export class UpdateDescriptionComponent {
 
           this.recipeService.update(updateRecipe, this.stateService.getPictures()).subscribe({
             next: createdRecipe => {
-              console.log('Recipe updated successfully:', createdRecipe);
               this.router.navigate(['/recipes']);
             },
             error: err => console.error(err)

@@ -1,0 +1,43 @@
+<div class="register-popup">
+  <div class="register-body-popup">
+    <div class="signup-container">
+      <div class="signup-box">
+        <h2>Edit info</h2>
+
+        <div class="form-row">
+          <div class="form-field">
+            <input type="text" id="first-name" placeholder="First name" [(ngModel)]="userData.firstName" />
+          </div>
+          <div class="form-field">
+            <input type="text" id="last-name" placeholder="Last name" [(ngModel)]="userData.lastName" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <input type="text" id="home-address" placeholder="Home address" [(ngModel)]="userData.birthLocation" />
+          </div>
+          <div class="form-field">
+            <input type="tel" id="phone-number" placeholder="Phone number" [(ngModel)]="userData.phoneNumber" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="product-image" class="file-label">
+            <span>{{ selectedFileName || 'Add profile picture' }}</span>
+          </label>
+          <input type="file" id="product-image" (change)="onFileSelected($event)" class="file-input"/>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <input type="email" id="email-address" placeholder="Email address" [(ngModel)]="userData.email" disabled="true" />
+          </div>
+        </div>
+
+        <button class="register-btn" (click)="saveChanges()">Save changes</button>
+        <button class="back-btn" (click)="closeDialog()">Back</button>
+      </div>
+    </div>
+  </div>
+</div>

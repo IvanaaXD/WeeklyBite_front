@@ -12,7 +12,6 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { RecipeListComponent } from './home/recipe-list/recipe-list.component';
 import { RecipeFilterComponent } from './home/recipe-filter/recipe-filter.component';
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [

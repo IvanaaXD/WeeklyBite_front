@@ -1,0 +1,7 @@
+<div class="right-panel">
+  <app-user-card [currentUser]="currentUser" (userInfoUpdated)="getUserInfo()"></app-user-card>
+</div>
+
+<div *ngIf="isLoading" class="loading-panel">
+  Loading...
+</div>

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CreateRecipe } from '../model/recipe.model';
 import { AuthService } from '../../infrastructure/auth/auth.service';
 import { GetIngredient } from '../../ingredient/ingredient.model';
 import { RecipeStateService } from '../recipe-state.service';
+import { CreateRecipe } from '../model/create-recipe.model';
 
 @Component({
   selector: 'app-create-recipe',

@@ -71,7 +71,6 @@ export class AdminCommentComponent implements OnInit {
   loadComments(): void {
     this.commentService.getComments().subscribe({
       next: (data) => {
-        console.log('Data received from backend:', data);
         this.comments = data.map((comment: any) => ({
         id: comment.id,
         name: "Anonymous",

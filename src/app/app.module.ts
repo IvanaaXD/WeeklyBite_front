@@ -13,6 +13,9 @@ import { Interceptor } from './infrastructure/auth/interceptor';
 import { UserModule } from './user/user.module';
 import { RecipeModule } from './recipe/recipe.module';
 import { CommentModule } from './comment/comment.module';
+import { WeeklyHistoryComponent } from './week/weekly-history/weekly-history.component';
+import { WeekModule } from './week/week.module';
+import { IngredientModule } from './ingredient/ingredient.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { CommentModule } from './comment/comment.module';
     RecipeModule,
     ReactiveFormsModule,
     UserModule,
-    CommentModule
+    CommentModule,
+    WeekModule,
+    IngredientModule
   ],
   providers: [
     I18nPluralPipe,
