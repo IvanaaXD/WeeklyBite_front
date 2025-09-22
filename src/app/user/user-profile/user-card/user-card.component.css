@@ -1,0 +1,117 @@
+.profile-card {
+  position: relative;
+  max-width: 350px;
+  min-width: 250px;
+  min-height: 400px;
+  background-color: #ffffff;
+  border: 2px solid #B46F6F;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+}
+
+.profile-picture {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #B46F6F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: auto;
+}
+
+h2 {
+  font-size: 1.2em !important;
+  font-weight: bold;
+  line-height: 2rem;
+  margin: 10px 0 0 0;
+}
+.change-info {
+  width: 100%;
+  padding: 7px;
+  background-color: #B46F6F;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.deactivate-account {
+  width: 100%;
+  padding: 7px;
+  background-color: #F8F4F4;
+  color: #e45c5c;
+  border: 1px solid #e45c5c;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.email, .role {
+  font-size: 0.7em;
+  color: #888;
+  margin: 0;
+}
+
+.additional-info {
+  margin: 20px 0;
+  text-align: left;
+}
+
+.additional-info p {
+  font-size: 0.9em;
+  color: #333;
+  margin: 5px 0;
+}
+
+.additional-info span {
+  font-weight: bold;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.change-password-btn {
+  background-color: #F8F4F4;
+  color: #B46F6F;;
+  border: 1px solid #B46F6F;
+  width: 100%;
+  padding: 7px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.deactivation-message {
+  margin-top: 5px;
+  padding: 0px;
+  color: #757575;
+  font-size: 0.5em;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.deactivation-message p {
+  margin: 0;
+  font-style: italic;
+}
+
+.deactivate-account:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

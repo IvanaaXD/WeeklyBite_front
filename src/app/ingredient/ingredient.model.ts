@@ -18,3 +18,9 @@ export interface CreateIngredient {
     quantity:number;
     unit: string;
 }
+
+export interface IngredientWithQuantityDTO {
+    name: string;
+    quantity:number;
+    unit: string;
+}

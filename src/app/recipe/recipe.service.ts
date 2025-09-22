@@ -1,16 +1,19 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../env/environment";
-import { CreatedRecipe, CreateRecipe, GetRecipe, UpdateRecipe } from "./model/recipe.model";
 import { catchError, Observable, throwError } from "rxjs";
 import { PagedResponse } from "../shared/paged-response.model";
+import { CreateRecipe } from "./model/create-recipe.model";
+import { CreatedRecipe } from "./model/created-recipe.model";
+import { GetRecipe } from "./model/recipe.model";
+import { UpdateRecipe } from "./model/update-recipe.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
 
-  constructor(private httpClient:HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   private apiUrl = `${environment.apiHost}/api/recipe`;
 

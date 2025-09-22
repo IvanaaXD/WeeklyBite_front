@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './infrastructure/auth/auth.service';
 import { UserService } from './user/user.service';
+import { LayoutModule } from "./layout/layout.module";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   title = 'WeeklyBite';

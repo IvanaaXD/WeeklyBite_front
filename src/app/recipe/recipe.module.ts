@@ -13,6 +13,7 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 import { UpdateDescriptionComponent } from './update-description/update-description.component';
 import { UpdateRecipeComponent } from './update-recipe/update-recipe.component';
 import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
+import { AllRecipesComponent } from './all-recipes/all-recipes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DeleteRecipeComponent } from './delete-recipe/delete-recipe.component';
     RecipeDetailsComponent,
     UpdateDescriptionComponent,
     UpdateRecipeComponent,
-    DeleteRecipeComponent
+    DeleteRecipeComponent,
+    AllRecipesComponent
   ],
   imports: [
     CommonModule,

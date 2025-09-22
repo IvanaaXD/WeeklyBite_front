@@ -1,0 +1,41 @@
+<div class="planner-container">
+  <div class="planner-header">
+    Week {{ formatDate(weekStartDate) }}–{{ formatDate(weekEndDate) }}
+    <span>
+      <a *ngIf="weekAvailable" [routerLink]="['/weekly-ingredients', weekId]">See products needed</a>
+      <span *ngIf="!weekAvailable" class="disabled-link">See products needed</span>
+    </span>
+  </div>
+  
+  <table>
+    <tr>
+      <th></th>
+      <th *ngFor="let day of days">{{ day }}</th>
+    </tr>
+
+    <tr *ngFor="let meal of meals">
+      <td class="meal-col">{{ meal }}</td>
+
+      <td *ngFor="let day of days"
+          (click)="weekAvailable && !mealPlan[meal][day] ? onEmptyCellClick(day, meal) : null"
+          [class.clickable]="weekAvailable && mealPlan[meal][day]">
+        
+        <ng-container *ngIf="mealPlan[meal][day] as recipe; else empty">
+          <a (click)="weekAvailable && goToRecipe(recipe.id); $event.stopPropagation()">
+            {{ recipe.name }}
+          </a>
+        </ng-container>
+
+        <ng-template #empty>
+          <span class="empty-cell">—</span>
+        </ng-template>
+      </td>
+
+    </tr>
+
+  </table>
+
+  <div class="footer-link">
+    <a [routerLink]="['/my-recipes-page']">See current week</a>
+  </div>
+</div>

@@ -9,9 +9,12 @@ import { AuthService } from "../../infrastructure/auth/auth.service";
 import { GetIngredient } from "../../ingredient/ingredient.model";
 import { User } from "../../user/model/user.model";
 import { UserService } from "../../user/user.service";
-import { Step, RecipeCategory, GetRecipe } from "../model/recipe.model";
+import { RecipeCategory, GetRecipe } from "../model/recipe.model";
 import { RecipeService } from "../recipe.service";
 import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component";
+import { Step } from "../model/step.model";
+import { NavigationService } from "../../layout/navigation.service";
+import { UpdateWeekDayComponent } from "../../week/update-week-day/update-week-day.component";
 
 @Component({
   selector: 'app-recipe-details',
@@ -20,6 +23,7 @@ import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component"
 })
 export class RecipeDetailsComponent {
 
+  showAddToMenuButton = false;
   isLoggedIn = false;
   isAdmin = false;
   userEmail: string = '';
@@ -67,7 +71,8 @@ export class RecipeDetailsComponent {
       private router: Router,
       private dialog: MatDialog,
       private authService: AuthService,
-      private userService: UserService
+      private userService: UserService,
+      private navigationService: NavigationService
     ) { }
 
   ngOnInit(): void {
@@ -77,6 +82,11 @@ export class RecipeDetailsComponent {
 
     const role = this.authService.getRole();
     this.isAdmin = role === 'ROLE_ADMIN';
+
+    const prevUrl = this.navigationService.getPreviousUrl();
+    if (prevUrl && !prevUrl.includes('/all-recipes/')) {
+      this.showAddToMenuButton = true;
+    }
 
     this.userService.getUserDetails(this.userEmail).pipe(
       catchError(error => {
@@ -217,7 +227,7 @@ export class RecipeDetailsComponent {
         };
 
         this.commentService.add(createComment).subscribe({
-          next: (savedComment) => {}, // uklonjeno console.log
+          next: (savedComment) => {}, 
           error: (err) => {
             console.error('Failed to save comment:', err);
             alert('Failed to add comment. Please try again.');
@@ -255,7 +265,6 @@ export class RecipeDetailsComponent {
   }
 
   openDeletePopup(): void {
-
     const dialogRef = this.dialog.open(DeleteRecipeComponent, {
       width: '400px',
       data: {
@@ -268,6 +277,24 @@ export class RecipeDetailsComponent {
         this.recipeService.delete(this.recipeId).subscribe(() => {
           this.router.navigate(['/recipes']);
         });
+      }
+    });
+  }
+
+  openAddPopup(): void {
+    const dialogRef = this.dialog.open(UpdateWeekDayComponent, {
+      width: '400px',
+      disableClose: true, 
+      data: {
+        recipeId: this.recipeId, 
+        recipeCategory: this.recipe.category
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Popup result:', result);
+        this.router.navigate(['/my-recipes-page']);
       }
     });
   }

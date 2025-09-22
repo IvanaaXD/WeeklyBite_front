@@ -5,7 +5,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from '../../env/environment';
 import { AuthService } from '../infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CreateUserDTO, User } from './model/user.model';
+import { ChangePasswordRequest, CreateUserDTO, UpdateUserRequest, User } from './model/user.model';
 import { GetRecipe } from '../recipe/model/recipe.model';
 
 export interface Account {
@@ -55,7 +55,6 @@ export class UserService {
 
   getUserDetails(currentUserEmail: string): Observable<User> {
     if (currentUserEmail != null) {
-      console.log(currentUserEmail);
       return this.http
         .get<any>(`${environment.apiHost}/api/users/search?email=${currentUserEmail}`)
       .pipe(
@@ -101,31 +100,31 @@ export class UserService {
 //   return this.http.get<boolean>(`/api/accounts/is-blocked/${email1}/${email2}`);
 // }
 
-//   getCurrentUser(): Observable<User> {
-//     return this.http.get<User>(`${this.apiUrl}/users/current`)
-//   }
+  getCurrentUser(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/current`)
+  }
 
-//   updateUserBasic(userRequest: UpdateUserRequest): Observable<User> {
-//     return this.http.patch<User>(`${this.apiUrl}/users/me`, userRequest);
-//   }
+  updateUserBasic(userRequest: UpdateUserRequest): Observable<User> {
+    return this.http.patch<User>(`${this.apiUrl}/users/me`, userRequest);
+  }
 
-//   uploadProfilePicture(profilePicture: File): Observable<void> {
-//     const formData = new FormData();
-//     formData.append('profilePicture', profilePicture, profilePicture.name);
-//     return this.http.post<void>(`${this.apiUrl}/users/profile-picture`, formData);
-//   }
+  uploadProfilePicture(profilePicture: File): Observable<void> {
+    const formData = new FormData();
+    formData.append('profilePicture', profilePicture, profilePicture.name);
+    return this.http.post<void>(`${this.apiUrl}/users/profile-picture`, formData);
+  }
 
-//   changePassword(passwordRequest: ChangePasswordRequest): Observable<void> {
-//     return this.http.post<void>(`${this.apiUrl}/accounts/change-password`, passwordRequest);
-//   }
+  changePassword(passwordRequest: ChangePasswordRequest): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/accounts/change-password`, passwordRequest);
+  }
 
-//   deactivateAccount(): Observable<void> {
-//     return this.http.delete<void>(`${this.apiUrl}/accounts/deactivate`);
-//   }
+  deactivateAccount(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/accounts/deactivate`);
+  }
 
-//   hasFutureCommitments(): Observable<boolean> {
-//     return this.http.get<boolean>(`${this.apiUrl}/accounts/me/has-future-commitments`);
-//   }
+  hasFutureCommitments(): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/accounts/me/has-future-commitments`);
+  }
 
   getFavoriteRecipes(): Observable<GetRecipe[]> {
     return this.http.get<GetRecipe[]>(`${this.apiUrl}/accounts/favorites/recipes`);
