@@ -1,0 +1,52 @@
+<div class="planner-container">
+  <div class="planner-header">
+    <div>
+        Week {{ formatDate(weekStartDate) }}–{{ formatDate(weekEndDate) }}
+
+      <span class="download-icon" (click)="downloadPDF()" title="Download PDF">
+        <!-- SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5-.5h4V1.5a.5.5 0 0 1 1 0v7.9h4a.5.5 0 0 1 .354.854l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1-.146-.354z"/>
+          <path d="M.5 15.5A.5.5 0 0 1 1 15h14a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </span> 
+    </div>
+
+    <div>
+      <span>
+        <a [routerLink]="['/weekly-ingredients', weekId]">See products needed</a>
+      </span>
+    </div>
+
+  </div>
+  
+  <table>
+    <tr>
+      <th></th>
+      <th *ngFor="let day of days">{{ day }}</th>
+    </tr>
+
+    <tr *ngFor="let meal of meals">
+      <td class="meal-col">{{ meal }}</td>
+
+      <td *ngFor="let day of days" [class.clickable]="mealPlan[meal][day]">
+        <ng-container *ngIf="mealPlan[meal][day] as recipe; else empty">
+          <a (click)="goToRecipe(recipe.id)">
+            {{ recipe.name }}
+          </a>
+        </ng-container>
+
+        <ng-template #empty>
+          <span class="empty-cell">—</span>
+        </ng-template>
+      </td>
+
+    </tr>
+
+  </table>
+
+  <div class="footer-link">
+    <a [routerLink]="['/past-weeks']">See past weeks</a>
+    <a [routerLink]="['/next-week']">See next week</a>  
+  </div>
+</div>

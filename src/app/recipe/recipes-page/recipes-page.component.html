@@ -1,0 +1,15 @@
+<div class="container">
+
+  <div class="filters-add">
+    <app-recipe-filter class="filters" (filtersChanged)="onFiltersChanged($event)"></app-recipe-filter>
+  </div>
+
+  <div class="list-add">
+    <div class="add-btn-container" *ngIf="isAdmin">
+      <button class="add-recipe" (click)="openDialog()">Add new recipe</button>
+    </div>
+
+    <app-recipe-list [filters]="recipeFilters"></app-recipe-list>
+  </div>
+
+</div>

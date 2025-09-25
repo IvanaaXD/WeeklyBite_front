@@ -1,0 +1,101 @@
+<div class="update-recipe-container">
+  <h2>Add recipe</h2>
+
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+
+    <!-- Title i Category -->
+    <div class="form-row inline-row">
+      <div class="form-field">
+        <label for="title">Title:</label>
+        <input id="title" type="text" formControlName="title" />
+        <div *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched" class="validation-error">
+          Title is required
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="category">Category:</label>
+        <select id="category" formControlName="category">
+          <option value="">Select</option>
+          <option *ngFor="let c of categories" [value]="c">{{c}}</option>
+        </select>
+        <div *ngIf="recipeForm.get('category')?.invalid && recipeForm.get('category')?.touched" class="validation-error">
+          Category is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="form-row">
+      <div class="form-field">
+        <label for="content">Content:</label>
+        <input id="content" type="text" formControlName="content" />
+        <div *ngIf="recipeForm.get('content')?.invalid && recipeForm.get('content')?.touched" class="validation-error">
+          Content is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Duration i Number of people -->
+    <div class="form-row inline-row">
+      <div class="form-field">
+        <label for="duration">Duration (min):</label>
+        <input id="duration" type="number" formControlName="duration" />
+        <div *ngIf="recipeForm.get('duration')?.errors && recipeForm.get('duration')?.touched" class="validation-error">
+          <small *ngIf="recipeForm.get('duration')?.errors?.['required']">Duration is required.</small>
+          <small *ngIf="recipeForm.get('duration')?.errors?.['min']">Duration must be at least 10 minutes.</small>
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="people">Number of people:</label>
+        <input id="people" type="number" formControlName="people" />
+        <div *ngIf="recipeForm.get('people')?.errors && recipeForm.get('people')?.touched" class="validation-error">
+          <small *ngIf="recipeForm.get('people')?.errors?.['required']">Number of people is required.</small>
+          <small *ngIf="recipeForm.get('people')?.errors?.['min']">Must be at least 1 person.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="ingredients-section" formArrayName="ingredients">
+      <label>Add ingredients:</label>
+      <div class="ingredient-row" *ngFor="let ing of ingredients.controls; let i = index" [formGroupName]="i">
+        <div class="ingredient-field"><span>{{i+1}}.</span></div>
+        <div class="ingredient-field name-field">
+          <input type="text" placeholder="Name" formControlName="name" />
+          <div *ngIf="ing.errors?.['nameRequired'] && ing.touched" class="validation-error">Name required</div>
+        </div>
+        <div class="ingredient-field">
+          <input type="number" placeholder="Quantity" formControlName="quantity" />
+          <div *ngIf="ing.errors?.['quantityInvalid'] && ing.touched" class="validation-error">Quantity must be ≥1</div>
+        </div>
+        <div class="ingredient-field">
+          <input type="text" placeholder="Unit" formControlName="unit" />
+          <div *ngIf="ing.errors?.['unitRequired'] && ing.touched" class="validation-error">Unit required</div>
+        </div>
+      </div>
+      <button type="button" class="add-ingredient" (click)="addIngredient()">Add ingredient</button>
+    </div>
+
+    <!-- Recipe pictures -->
+    <div class="form-row">
+      <div class="form-field">
+        <label>Recipe pictures:</label>
+        <input type="file" (change)="onFileSelected($event)" multiple />
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-row">
+      <button 
+        type="submit" 
+        class="write-btn" 
+        [ngClass]="{'write-btn-valid': recipeForm.valid}"
+        [disabled]="!recipeForm.valid">
+        Write recipe
+      </button>
+      <button type="button" class="back-btn" (click)="goBack()">Back</button>
+    </div>
+
+  </form>
+
+</div>

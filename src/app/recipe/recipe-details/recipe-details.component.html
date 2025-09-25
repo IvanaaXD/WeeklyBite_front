@@ -1,0 +1,93 @@
+<div class="recipe-details-container">
+
+  <!-- Carousel + Favorites -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <button class="prev" (click)="prevImage()">&#10094;</button>
+      <div class="carousel-images">
+        <img [src]="imageUrls[currentImageIndex]" *ngIf="imageUrls.length > 0" />
+        <div *ngIf="imageUrls.length === 0" class="no-images-placeholder">
+          No images available for this recipe.
+        </div>
+      </div>
+      <button class="next" (click)="nextImage()">&#10095;</button>
+    </div>
+
+    <!-- Favorites -->
+    <div class="add-favorites-container">
+      <button class="add-favorites" (click)="toggleFavorite()">
+        Add to favorites
+        <span [class]="isFavorite ? 'star active' : 'star'">&#9733;</span>
+      </button>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="ingredients-container">
+      <h3>Ingredients</h3>
+      <ul>
+        <li *ngFor="let ingredient of recipe.products">
+          {{ingredient.name}}: <strong>{{ingredient.quantity}} {{ingredient.unit}}</strong>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="recipe-actions" *ngIf="isLoggedIn">
+      <button class="add-menu" *ngIf="!isAdmin && showAddToMenuButton" (click)="openAddPopup()">Add recipe to weekly menu</button>
+
+      <div class="edit-delete-group" *ngIf="isAdmin">
+        <button class="edit-recipe" (click)="openEditPopup()">Edit recipe</button>
+        <button class="delete-recipe" (click)="openDeletePopup()">Delete recipe</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Preparation Steps -->
+  <div class="preparation-container">
+    <h2>Preparation of "{{recipe.name}}"</h2>
+
+    <!-- Duration & Number of people -->
+    <div class="recipe-meta">
+      <div class="duration">⏱ Duration: {{recipe.duration}} min</div>
+      <div class="people">👥 Serves: {{recipe.numberOfPeople}} people</div>
+    </div>
+
+    <div *ngFor="let step of recipe.description" class="step">
+      <h4>{{step.name}}</h4>
+      <p>{{step.description}}</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Comments Section -->
+<div class="comments-container">
+  <h2>Comments</h2>
+  <div class="comments">
+    <div class="comment" *ngFor="let comment of showComments">
+      <div class="comment-header">
+        <a class="icon-link">
+            <i class="fas fa-user-circle"></i>
+        </a>
+        <strong class="comment-author">{{ comment.author }}</strong>
+      </div>
+      <p class="comment-text">{{ comment.text }}</p>
+      <div class="comment-footer">
+        <span>Recipe: {{ comment.recipe }}</span>
+        <span>Category: {{ comment.category }}</span>
+        <span class="comment-stars">
+          <ng-container *ngFor="let star of getStars(comment.rating)">⭐</ng-container>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to Add Comment -->
+  <button 
+    class="add-comment" 
+    *ngIf="canAddComment"
+    (click)="openCommentPopup()">
+    Add Comment
+  </button>
+</div>

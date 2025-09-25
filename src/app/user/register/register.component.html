@@ -1,0 +1,93 @@
+<div class="register">
+  <div class="register-body">
+    <div class="signup-container">
+      <div class="signup-box">
+        <h2>Sign up</h2>
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="firstName">First name</label>
+              <input id="firstName" type="text" formControlName="firstName" placeholder="e.g., Petar">
+              <div *ngIf="registrationForm.get('firstName')?.invalid && (registrationForm.get('firstName')?.dirty || registrationForm.get('firstName')?.touched)" class="error-message">
+                First name is required.
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="lastName">Last name</label>
+              <input id="lastName" type="text" formControlName="lastName" placeholder="e.g., Petrović">
+              <div *ngIf="registrationForm.get('lastName')?.invalid && (registrationForm.get('lastName')?.dirty || registrationForm.get('lastName')?.touched)" class="error-message">
+                Last name is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="birthLocation">Home address</label>
+              <input id="birthLocation" type="text" formControlName="birthLocation" placeholder="e.g., Beogradska 10, Novi Sad">
+              <div *ngIf="registrationForm.get('birthLocation')?.invalid && (registrationForm.get('birthLocation')?.dirty || registrationForm.get('birthLocation')?.touched)" class="error-message">
+                Home address is required.
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="phoneNumber">Phone number</label>
+              <input id="phoneNumber" type="tel" formControlName="phoneNumber" placeholder="e.g., 0641234567">
+              <div *ngIf="registrationForm.get('phoneNumber')?.invalid && (registrationForm.get('phoneNumber')?.dirty || registrationForm.get('phoneNumber')?.touched)" class="error-message">
+                Phone number is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field full-width">
+              <label for="email">Email address</label>
+              <input id="email" type="email" formControlName="email" placeholder="e.g., korisnik@primer.com">
+              <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)" class="error-message">
+                <span *ngIf="registrationForm.get('email')?.errors?.['required']">Email is required.</span>
+                <span *ngIf="registrationForm.get('email')?.errors?.['email']">Please enter a valid email address.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="password">Password</label>
+              <input id="password" type="password" formControlName="password" placeholder="min. 8 characters, one number">
+              <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)" class="error-message">
+                <span *ngIf="registrationForm.get('password')?.errors?.['required']">Password is required.</span>
+                <span *ngIf="registrationForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters.</span>
+                <span *ngIf="registrationForm.get('password')?.errors?.['pattern']">Password must contain at least one number.</span>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="confirmPassword">Confirm Password</label>
+              <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Re-Password">
+              <div *ngIf="registrationForm.get('confirmPassword')?.invalid && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)" class="error-message">
+                Confirm Password is required.
+              </div>
+            </div>
+          </div>
+
+          <p *ngIf="registrationForm.errors?.['passwordMismatch'] && (registrationForm.get('confirmPassword')?.dirty || registrationForm.get('confirmPassword')?.touched)" class="error-message info-text">
+            Passwords do not match.
+          </p>
+
+          <div class="form-row">
+            <label for="profile-image" class="profile-picture-label">Profile picture</label>
+            <div class="form-field">
+              <input type="file" id="profile-image" (change)="onFileChange($event)">
+            </div>
+          </div>
+          
+          <p *ngIf="errorMessage" class="error-message server-error">{{ errorMessage }}</p>
+          <button class="register-btn" type="submit">
+            {{ accountType === 'provider' ? 'Next' : 'Register' }}
+          </button>
+          <button class="back-btn" [routerLink]="['/login']">Back</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="planner-container">
+  <div class="planner-header">
+    Ingredients List
+  </div>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+    </tr>
+
+    <tr *ngFor="let ingredient of ingredients" [class.clickable]="ingredient">
+      <td>{{ ingredient.name }}</td>
+      <td>{{ ingredient.quantity }}</td>
+      <td>{{ ingredient.unit }}</td>
+    </tr>
+  </table>
+
+</div>

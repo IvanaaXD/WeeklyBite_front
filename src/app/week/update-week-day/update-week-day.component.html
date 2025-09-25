@@ -1,0 +1,43 @@
+<div class="reservation-container">
+  <h1>Add Recipe to Week</h1>
+  <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    
+    <!-- Datum od ponedjeljka do nedjelje (readonly) -->
+    <div class="form-group">
+      <label for="dateRange">Week Dates</label>
+      <input
+        type="text"
+        id="dateRange"
+        [value]="weekRange"
+        readonly
+        class="readonly-date"
+      />
+    </div>
+
+    <!-- Dropdown za Day enum -->
+    <div class="form-group">
+      <label for="day">Select Day</label>
+      <select
+        [(ngModel)]="formModel.day"
+        name="day"
+        #day="ngModel"
+        required>
+        <option *ngFor="let d of weekDays" [ngValue]="d">{{ d.day }}</option>
+      </select>
+
+      <div class="error-message" *ngIf="day.invalid && (day.touched || submitted)">
+        Day is required.
+      </div>
+    </div>
+
+    <!-- Dropdown za RecipeCategory -->
+    <div class="form-group">
+      <label>Recipe Category</label>
+      <input type="text" [value]="recipeCategory" readonly class="readonly-date" />
+    </div>
+
+    <!-- Dugmad -->
+    <button type="submit" class="btn-primary" [disabled]="form.invalid">Add</button>
+    <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+  </form>
+</div>

@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "weeklybite-front": {
+    "WineApp": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,28 +23,31 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/weeklybite-front",
+            "outputPath": "dist/wine-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "./src/polyfills.ts"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.css",
+              "node_modules/angular-calendar/css/angular-calendar.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/leaflet/dist/leaflet.css"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": [
+              "node_modules/leaflet/dist/leaflet.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -46,8 +59,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
                 }
               ],
               "outputHashing": "all"
@@ -64,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "weeklybite-front:build:production"
+              "buildTarget": "WineApp:build:production"
             },
             "development": {
-              "buildTarget": "weeklybite-front:build:development"
+              "buildTarget": "WineApp:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,22 +93,29 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "./src/polyfills.ts"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

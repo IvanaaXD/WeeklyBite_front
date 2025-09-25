@@ -1,0 +1,132 @@
+.update-recipe-container {
+  background-color: #fbf1eb;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h2 {
+  color: #812b2b;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 500px; 
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+}
+
+.inline-row {
+  flex-direction: row; 
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+label {
+  color: #812b2b;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input, select {
+  border: 1px solid #812b2b;
+  padding: 8px 10px;
+  font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ingredients-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; 
+  width: 100%;
+}
+
+.ingredient-row {
+  display: grid;
+  grid-template-columns: 20px 2fr 1fr 1fr; 
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.ingredient-row input {
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+.add-ingredient {
+  background-color: #812b2b;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse; 
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.write-btn {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%;
+}
+
+.back-btn {
+  background-color: transparent;
+  border: 1px solid #812b2b;
+  color: #812b2b;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%;
+}
+
+.validation-error {
+  color: red;
+  font-style: italic;
+  font-size: 12px; 
+  margin-top: 5px; 
+}
+
+.write-btn {
+  background-color: gray;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.write-btn-valid {
+  background-color: #812B2B; 
+}

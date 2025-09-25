@@ -1,0 +1,101 @@
+.login-body {
+  background-color: #FBF1EB;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.login-box {
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #812B2B;
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+input[type="email"],
+input[type="password"],
+.password-field input {
+  width: 280px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-field i {
+  position: absolute;
+  right: 8px;
+  cursor: pointer;
+  color: #888;
+}
+
+.error-message {
+  color: red;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.sign-up-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.login-btn {
+  background-color: #812B2B;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 280px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.register-btn {
+  background-color: transparent;
+  border: 1px solid #812B2B;
+  color: #812B2B;
+  padding: 10px;
+  width: 280px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.login-btn:hover {
+  background-color: #812B2B;
+}
+
+.register-btn:hover {
+  background-color: #f4d6d6;
+}

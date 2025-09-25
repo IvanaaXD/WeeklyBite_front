@@ -1,0 +1,27 @@
+<div class="login-body">
+  <div class="login-container">
+      <div class="login-box">
+        <h2>Sign in</h2>
+        <form [formGroup]='loginForm' (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" placeholder="example@eventa.com" required 
+            formControlName="username"/>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <div class="password-field">
+                <input [type]="passwordFieldType" id="password" placeholder="Enter your password" required 
+                formControlName="password"/>
+                <i class="toggle-password" [class.fa-eye-slash]="!isPasswordVisible" [class.fa-eye]="isPasswordVisible" (click)="togglePasswordVisibility()"></i>
+            </div>
+          </div>
+          <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+          <div class="sign-up-buttons">
+            <button type="submit" class="login-btn">Log in</button>
+            <button type="button" class="register-btn" [routerLink]="['/register']">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

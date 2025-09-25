@@ -1,0 +1,26 @@
+<div class="navbar-body">
+    <header class="navbar">
+        <div class="navbar-logo">
+            <span [routerLink]="['home']" class="navbar-title">WeeklyBite</span>
+        </div>
+        <nav class="navbar-links">
+
+            <ng-container *ngIf="role === 'ROLE_ADMIN'">
+                <a routerLink="recipes">RECIPES</a>
+                <a routerLink="comments">COMMENTS</a>
+            </ng-container>
+
+            <ng-container *ngIf="role === 'ROLE_USER'">
+                <a routerLink="past-weeks">PAST RECEPIES</a>
+                <a routerLink="my-recipes-page">MY RECEPIES</a>
+            </ng-container>
+
+            <!-- <a routerLink="profile">PROFILE</a> -->
+            <a routerLink="/profile" class="icon-link">
+                <i class="fas fa-user-circle"></i>
+            </a>
+
+            <button style="float: right" class="register-btn" (click)="logOut()">Log out</button>
+        </nav>
+    </header>
+</div>

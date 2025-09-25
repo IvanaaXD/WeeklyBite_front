@@ -1,0 +1,261 @@
+.recipe-details-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 3vw;
+  padding: 2%;
+  margin-top: 2%;
+}
+
+.carousel-container {
+  flex-basis: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel {
+  position: relative;
+  max-width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.carousel-images {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.carousel-images img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+button.prev,
+button.next {
+  background-color: transparent;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+}
+
+button.prev:hover,
+button.next:hover {
+  color: #812B2B;
+}
+
+.add-favorites-container {
+  margin-top: 10px;
+}
+
+.add-favorites {
+  background: transparent;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  color: #812B2B;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-favorites .star {
+  font-size: 30px;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.add-favorites .star.active {
+  color: #812B2B;
+}
+
+.ingredients-container {
+  margin-top: 20px;
+  background-color: #f6efef;
+  padding: 15px;
+  width: 60%;
+}
+
+.ingredients-container h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #812B2B;
+}
+
+.ingredients-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ingredients-container li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.recipe-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  width: 65%;
+}
+
+.edit-delete-group {
+  display: flex;
+  gap: 10px; 
+}
+
+.recipe-actions button {
+  padding: 10px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recipe-actions .add-menu {
+  background-color: #B46F6F;
+  color: white;
+}
+
+.recipe-actions .edit-recipe {
+  background-color: #812B2B;
+  color: white;
+  flex: 1; 
+}
+
+.recipe-actions .delete-recipe {
+  background-color: #B46F6F;
+  color: white;
+  flex: 1; 
+}
+
+.recipe-actions button:hover {
+  opacity: 0.85;
+}
+
+.preparation-container {
+  flex-basis: 55%;
+  background-color: #F6EFEF;
+  padding: 2% 2%;
+  margin-right: 5%;
+}
+
+.preparation-container h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #812B2B;
+}
+
+.step {
+  margin-bottom: 20px;
+}
+
+.step h4 {
+  color: #812B2B;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.step p {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.recipe-meta {
+  text-align: left;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.comments-container {
+  border: 2px solid #b46f6f; 
+  padding: 20px;
+  width: 80vw;
+  margin: 0 auto;
+  margin-bottom: 2%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;  
+  align-items: stretch;    
+}
+
+.comments-container h2 {
+  text-align: center;
+  color: #b46f6f;
+  font-family: Arial, sans-serif;
+  margin-bottom: 20px;
+}
+
+.comment {
+  background-color: #F6EFEF; 
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.comment-author {
+  font-size: 14px;
+  color: #333;
+}
+
+.comment-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.comment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.comment-stars {
+  color: #FFD700; 
+  font-size: 16px;
+}
+
+.comments-container button {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  padding: 8px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #b46f6f;
+  color: white;
+  margin-left: auto; 
+}
+
+.comments-container button:hover {
+  background-color: #b46f6f;
+}
