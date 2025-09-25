@@ -28,11 +28,6 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  init(authService: AuthService):void {
-      
-  }
-
-
   registerUser(userData: CreateUserDTO, profilePictureFile: File | null, agencyPictures: File[] = []): Observable<any> {
     const formData = new FormData();
     

@@ -12,7 +12,7 @@ import { CreateUserDTO, Role } from '../model/user.model';
 export class RegisterComponent implements OnInit {
 
   registrationForm!: FormGroup;
-  accountType: string = 'event-organizer'; 
+  accountType: string = 'user'; 
   errorMessage: string = '';
   selectedProfilePictureFile: File | null = null; 
   
@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
     if (this.registrationForm.valid) {
       const userData: CreateUserDTO = {
         ...this.registrationForm.value,
-        role: this.accountType === 'user' ? Role.USER : Role.ADMIN,
+        role: Role.USER,
         agency: null,
         profilePicture: null as any
       };
