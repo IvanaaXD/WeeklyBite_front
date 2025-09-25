@@ -54,8 +54,7 @@ th {
 
 .footer-link {
   margin-top: 5px;
-  display: flex;
-  justify-content: space-between; /* prvi lijevo, drugi desno */
+  text-align: left;
 }
 
 .footer-link a {
@@ -69,11 +68,11 @@ th {
 }
 
 td.clickable {
-  cursor: pointer; /* ruka kad pređe preko cele ćelije */
+  cursor: pointer; 
 }
 
 td.clickable a {
-  cursor: pointer; /* ruka i kad je link */
+  cursor: pointer; 
 }
 
 .empty-cell {
@@ -81,4 +80,32 @@ td.clickable a {
   width: 100%;
   height: 100%;
   text-align: center;
+}
+
+.disabled-link {
+  color: gray;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.footer-link {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-top: 20px;
+}
+
+.footer-link a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #6b2a2a;
+}
+
+.footer-link a.disabled {
+  pointer-events: none;
+  color: gray;
+}
+
+.left-links a {
+  margin-right: 0px;
 }

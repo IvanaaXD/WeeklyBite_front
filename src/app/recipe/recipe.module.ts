@@ -24,7 +24,7 @@ import { AllRecipesComponent } from './all-recipes/all-recipes.component';
     UpdateDescriptionComponent,
     UpdateRecipeComponent,
     DeleteRecipeComponent,
-    AllRecipesComponent
+    AllRecipesComponent,
   ],
   imports: [
     CommonModule,

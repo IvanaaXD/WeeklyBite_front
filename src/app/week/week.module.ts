@@ -9,12 +9,14 @@ import { LayoutModule } from "../layout/layout.module";
 import { UserModule } from "../user/user.module";
 import { UpdateWeekDayComponent } from './update-week-day/update-week-day.component';
 import { NextWeekComponent } from './next-week/next-week.component';
+import { PastWeekComponent } from './past-week/past-week.component';
 
 @NgModule({
   declarations: [
     WeeklyHistoryComponent,
     UpdateWeekDayComponent,
-    NextWeekComponent
+    NextWeekComponent,
+    PastWeekComponent
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './infrastructure/auth/auth.service';
 import { UserService } from './user/user.service';
 import { LayoutModule } from "./layout/layout.module";
+import { WeekService } from './week/week.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   title = 'WeeklyBite';
   isLoggedIn: boolean = false;
 
-  constructor(private authService: AuthService, private userService: UserService) {}
+  constructor(private authService: AuthService, private userService: UserService, private weekService: WeekService) {}
 
   ngOnInit() {
     this.userService.init(this.authService);
