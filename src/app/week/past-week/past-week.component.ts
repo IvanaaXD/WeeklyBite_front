@@ -26,8 +26,8 @@ export class PastWeekComponent implements OnInit {
 
   mealPlan: { [meal: string]: { [day: string]: GetRecipe | null } } = {};
 
-  pastWeeks: GetWeek[] = []; // sve prošle sedmice
-  currentWeekIndex = 0; // indeks sedmice koja se trenutno prikazuje
+  pastWeeks: GetWeek[] = []; 
+  currentWeekIndex = 0; 
 
   constructor(private weekService: WeekService, private router: Router) {
     this.meals.forEach(meal => {
@@ -47,7 +47,7 @@ export class PastWeekComponent implements OnInit {
         }
 
         this.pastWeeks = weeks;
-        this.currentWeekIndex = 0; // najnovija prošla sedmica
+        this.currentWeekIndex = 0; 
         this.displayWeek(this.currentWeekIndex);
       },
       error: (err) => {
@@ -63,10 +63,8 @@ export class PastWeekComponent implements OnInit {
     this.weekStartDate = week.startDate;
     this.weekEndDate = week.endDate;
 
-    // očisti mealPlan
     this.meals.forEach(meal => this.days.forEach(day => this.mealPlan[meal][day] = null));
 
-    // popuni mealPlan
     week.weekDays.forEach((weekDay: GetWeekDay) => {
       const day = weekDay.day;
       this.dayToWeekDayId[day] = weekDay.id;
@@ -78,7 +76,7 @@ export class PastWeekComponent implements OnInit {
   }
 
   previousWeek(event: Event) {
-    event.preventDefault(); // <--- ovo sprečava "href=#" da refresuje stranicu
+    event.preventDefault(); 
     if (this.currentWeekIndex < this.pastWeeks.length - 1) {
       this.currentWeekIndex += 1;
       this.displayWeek(this.currentWeekIndex);

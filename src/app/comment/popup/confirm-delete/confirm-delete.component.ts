@@ -13,10 +13,10 @@ export class ConfirmDeleteComponent {
   ) {}
 
   onDelete(): void {
-    this.dialogRef.close(true); // Prosleđuje 'true' ako je korisnik potvrdio
+    this.dialogRef.close(true); 
   }
 
   onCancel(): void {
-    this.dialogRef.close(false); // Prosleđuje 'false' ako je korisnik odustao
+    this.dialogRef.close(false); 
   }
 }

@@ -6,7 +6,7 @@ import { CommentService } from "../../comment/comment.service";
 import { CreateCommentComponent } from "../../comment/create-comment/create-comment.component";
 import { ShowComment, GetComment, CreateComment } from "../../comment/model/comment.model";
 import { AuthService } from "../../infrastructure/auth/auth.service";
-import { GetIngredient } from "../../ingredient/ingredient.model";
+import { GetIngredient } from "../../ingredient/model/ingredient.model";
 import { User } from "../../user/model/user.model";
 import { UserService } from "../../user/user.service";
 import { RecipeCategory, GetRecipe } from "../model/recipe.model";
@@ -172,7 +172,6 @@ export class RecipeDetailsComponent {
 
     const promises = this.imageUrls.map(src => this.getImageSize(src));
     Promise.all(promises).then(sizes => {
-      // Nađi maksimalnu širinu i visinu
       this.carouselWidth = Math.max(...sizes.map(s => s.width));
       this.carouselHeight = Math.max(...sizes.map(s => s.height));
     });
@@ -201,7 +200,6 @@ export class RecipeDetailsComponent {
     this.isFavorite = !this.isFavorite;
     this.addToFavorites();
   }
-
 
   addToFavorites() {
     this.isFavorite = !this.isFavorite;

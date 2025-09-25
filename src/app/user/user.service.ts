@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-// import { AgencyInfo, ChangePasswordRequest, CreateUserDTO, UpdateAgencyRequest, UpdateUserRequest, User, UserDTO } from './model/user.model';
 import { environment } from '../../env/environment';
 import { AuthService } from '../infrastructure/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -25,7 +24,6 @@ export interface Account {
 export class UserService {
   
   private apiUrl = environment.apiHost + '/api';
-//  private user: CreateUserDTO;
   private pupProfilePictureFile: File | null = null;
 
   constructor(private http: HttpClient) {}
@@ -72,33 +70,6 @@ export class UserService {
     throw new Error('ID korisnika nije pronađen u JWT tokenu.');
   }
 }
-
-//   getAccountByEmail(email: string): Observable<any> {
-//     return this.http.get<any>(`${this.apiUrl}/accounts/search?email=${encodeURIComponent(email)}`);
-//   }
-
-//   getAccountById(id: number): Observable<UserDTO> {
-//     return this.http.get<UserDTO>(`${this.apiUrl}/users/${id}`);
-//   }
-
-//   getUserByEmail(email: string): Observable<any> {
-//     return this.http.get<any>(`${this.apiUrl}/users/search?email=${encodeURIComponent(email)}`);
-//   }
-
-//   blockUser(blockerId: number, blockedUserId: number): Observable<any> {
-//     return this.http.post<any>(`${this.apiUrl}/accounts/block/${blockerId}/${blockedUserId}`, {});
-//   }
-//   getBlockedUsers(): Observable<number[]> {
-//     return this.http.get<number[]>(`${this.apiUrl}/accounts/blocked-organizers`);
-//   }
-
-//   checkIfBlocked(currentUserId: number, targetUserEmailFromToken: string) {
-//     return this.http.get<{ isBlocked: boolean }>(`${this.apiUrl}/accounts/check-blocked/${currentUserId}/${targetUserEmailFromToken}`);
-//   }
-  
-// isBlocked(email1: string, email2: string): Observable<boolean> {
-//   return this.http.get<boolean>(`/api/accounts/is-blocked/${email1}/${email2}`);
-// }
 
   getCurrentUser(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/users/current`)

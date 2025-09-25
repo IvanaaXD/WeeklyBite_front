@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../infrastructure/auth/auth.service';
-import { GetIngredient } from '../../ingredient/ingredient.model';
+import { GetIngredient } from '../../ingredient/model/ingredient.model';
 import { RecipeStateService } from '../recipe-state.service';
 import { RecipeService } from '../recipe.service';
 import { CreateRecipe } from '../model/create-recipe.model';

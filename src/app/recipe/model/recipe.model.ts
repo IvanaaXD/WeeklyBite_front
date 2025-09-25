@@ -1,4 +1,4 @@
-import { GetIngredient } from "../../ingredient/ingredient.model";
+import { GetIngredient } from "../../ingredient/model/ingredient.model";
 import { Step } from "./step.model";
 
 export interface GetRecipe {
