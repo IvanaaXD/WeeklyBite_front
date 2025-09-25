@@ -46,7 +46,19 @@
   </table>
 
   <div class="footer-link">
-    <a [routerLink]="['/past-weeks']">See past weeks</a>
-    <a [routerLink]="['/next-week']">See next week</a>  
+    <div class="left-links">
+        <a href="#" (click)="previousWeek($event)" [class.disabled]="currentWeekIndex >= pastWeeks.length - 1">
+        Previous week
+        </a>
+
+    </div>
+
+    <div class="right-link">
+        <a href="#" (click)="nextWeek($event)" [class.disabled]="currentWeekIndex === 0">
+        Next week
+        </a>
+    </div>
   </div>
+
+
 </div>

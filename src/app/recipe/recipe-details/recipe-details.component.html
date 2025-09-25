@@ -67,7 +67,9 @@
   <div class="comments">
     <div class="comment" *ngFor="let comment of showComments">
       <div class="comment-header">
-        <img [src]="comment.avatar" alt="Profile Picture" class="comment-avatar" />
+        <a class="icon-link">
+            <i class="fas fa-user-circle"></i>
+        </a>
         <strong class="comment-author">{{ comment.author }}</strong>
       </div>
       <p class="comment-text">{{ comment.text }}</p>
@@ -84,6 +86,7 @@
   <!-- Button to Add Comment -->
   <button 
     class="add-comment" 
+    *ngIf="canAddComment"
     (click)="openCommentPopup()">
     Add Comment
   </button>

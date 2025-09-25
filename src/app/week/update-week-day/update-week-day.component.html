@@ -22,8 +22,9 @@
         name="day"
         #day="ngModel"
         required>
-        <option *ngFor="let d of days" [ngValue]="d">{{ d }}</option>
+        <option *ngFor="let d of weekDays" [ngValue]="d">{{ d.day }}</option>
       </select>
+
       <div class="error-message" *ngIf="day.invalid && (day.touched || submitted)">
         Day is required.
       </div>
@@ -31,17 +32,8 @@
 
     <!-- Dropdown za RecipeCategory -->
     <div class="form-group">
-      <label for="category">Recipe Category</label>
-      <select
-        [(ngModel)]="formModel.category"
-        name="category"
-        #category="ngModel"
-        required>
-        <option *ngFor="let c of categories" [ngValue]="c">{{ c }}</option>
-      </select>
-      <div class="error-message" *ngIf="category.invalid && (category.touched || submitted)">
-        Category is required.
-      </div>
+      <label>Recipe Category</label>
+      <input type="text" [value]="recipeCategory" readonly class="readonly-date" />
     </div>
 
     <!-- Dugmad -->

@@ -11,18 +11,16 @@
             </ng-container>
 
             <ng-container *ngIf="role === 'ROLE_USER'">
+                <a routerLink="past-weeks">PAST RECEPIES</a>
                 <a routerLink="my-recipes-page">MY RECEPIES</a>
             </ng-container>
 
-            <a routerLink="profile">PROFILE</a>
-            <a routerLink="notification">
-                <img src="../../../assets/images/notifications_off.png" class="notification-picture">
+            <!-- <a routerLink="profile">PROFILE</a> -->
+            <a routerLink="/profile" class="icon-link">
+                <i class="fas fa-user-circle"></i>
             </a>
 
             <button style="float: right" class="register-btn" (click)="logOut()">Log out</button>
-            <a>
-                <img src="../../../assets/images/food.jpg" class="profile-picture">
-            </a>
         </nav>
     </header>
 </div>

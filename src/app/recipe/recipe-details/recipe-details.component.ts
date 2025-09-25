@@ -15,6 +15,8 @@ import { DeleteRecipeComponent } from "../delete-recipe/delete-recipe.component"
 import { Step } from "../model/step.model";
 import { NavigationService } from "../../layout/navigation.service";
 import { UpdateWeekDayComponent } from "../../week/update-week-day/update-week-day.component";
+import { WeekService } from "../../week/week.service";
+import { GetWeek } from "../../week/model/get-week.model";
 
 @Component({
   selector: 'app-recipe-details',
@@ -39,6 +41,8 @@ export class RecipeDetailsComponent {
 
   showComments: ShowComment[] = [];
   comments: GetComment[] = [];
+
+  canAddComment: boolean = false;
 
   user: User = {
     id: 0,
@@ -72,7 +76,8 @@ export class RecipeDetailsComponent {
       private dialog: MatDialog,
       private authService: AuthService,
       private userService: UserService,
-      private navigationService: NavigationService
+      private navigationService: NavigationService,
+      private weekService: WeekService
     ) { }
 
   ngOnInit(): void {
@@ -115,6 +120,10 @@ export class RecipeDetailsComponent {
     } else {
       console.error('Recipe ID is not provided in the route.');
       this.router.navigate(['/error']);
+    }
+
+    if (!this.isAdmin) {
+      this.checkAddingComment(role);
     }
   }
 
@@ -284,9 +293,9 @@ export class RecipeDetailsComponent {
   openAddPopup(): void {
     const dialogRef = this.dialog.open(UpdateWeekDayComponent, {
       width: '400px',
-      disableClose: true, 
+      disableClose: true,
       data: {
-        recipeId: this.recipeId, 
+        recipeId: this.recipeId,
         recipeCategory: this.recipe.category
       }
     });
@@ -298,4 +307,24 @@ export class RecipeDetailsComponent {
       }
     });
   }
+  
+  checkAddingComment(role: string | null): void {
+    const isUserLogged = this.isLoggedIn && role === 'ROLE_USER';
+
+    this.weekService.getPastWeeks().subscribe({
+      next: (pastWeeks: GetWeek[]) => {
+        const isBetweenPastRecipes = pastWeeks.some(week =>
+          week.weekDays.some(weekDay =>
+            weekDay.recipes.some(recipe => recipe.id === this.recipeId)
+          )
+        );
+
+        this.canAddComment = isUserLogged && isBetweenPastRecipes;
+      },
+      error: (err) => {
+        console.error('Error fetching past recipes', err);
+        this.canAddComment = false;
+      }
+    });
+ }
 }

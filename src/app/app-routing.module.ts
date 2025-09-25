@@ -16,6 +16,7 @@ import { WeeklyRecipesComponent } from './recipe/weekly-recipes/weekly-recipes.c
 import { AllRecipesComponent } from './recipe/all-recipes/all-recipes.component';
 import { NextWeekComponent } from './week/next-week/next-week.component';
 import { WeeklyIngredientsComponent } from './ingredient/weekly-ingredients/weekly-ingredients.component';
+import { PastWeekComponent } from './week/past-week/past-week.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'my-recipes-page', component: WeeklyRecipesComponent, canActivate: [AuthGuard] },
   { path: 'next-week', component: NextWeekComponent, canActivate: [AuthGuard] },
   { path: 'weekly-ingredients/:weekId', component: WeeklyIngredientsComponent, canActivate: [AuthGuard] },
+  { path: 'past-weeks', component: PastWeekComponent },
 ];
 
 @NgModule({

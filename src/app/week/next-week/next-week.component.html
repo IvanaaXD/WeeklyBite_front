@@ -1,9 +1,8 @@
 <div class="planner-container">
   <div class="planner-header">
     Week {{ formatDate(weekStartDate) }}–{{ formatDate(weekEndDate) }}
-    <span>
-      <a *ngIf="weekAvailable" [routerLink]="['/weekly-ingredients', weekId]">See products needed</a>
-      <span *ngIf="!weekAvailable" class="disabled-link">See products needed</span>
+    <span *ngIf="weekAvailable">
+      <a [routerLink]="['/weekly-ingredients', weekId]">See products needed</a>
     </span>
   </div>
   

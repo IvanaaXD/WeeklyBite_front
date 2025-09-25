@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GetRecipe, RecipeCategory } from '../model/recipe.model';
 import { Day } from '../../week/model/week-day.model';
 import { WeekService } from '../../week/week.service';
@@ -23,8 +23,13 @@ export class WeeklyRecipesComponent implements OnInit {
   dayToWeekDayId: { [day: string]: number } = {};
 
   mealPlan: { [meal: string]: { [day: string]: GetRecipe | null } } = {};
+  allRecipeDetails: GetRecipe[] = [];
 
-  constructor(private weekService: WeekService, private router: Router, private authService: AuthService) {
+  constructor(private weekService: WeekService, 
+              private router: Router, 
+              private authService: AuthService, 
+              private cdr: ChangeDetectorRef
+  ) {
     this.meals.forEach(meal => {
       this.mealPlan[meal] = {};
       this.days.forEach(day => {
@@ -64,7 +69,24 @@ export class WeeklyRecipesComponent implements OnInit {
     return `${date.getDate()}.${date.getMonth() + 1}`;
   }
 
-  downloadWeekPDF() {
-    throw new Error('Method not implemented.');
+  downloadPDF() {
+    this.weekService.sendWeeklyPdf().subscribe(
+      response => {
+        alert(response); 
+      },
+      error => {
+        alert("An error happend while sending PDF. Try again.");
+        console.error(error); 
+      }
+    );
+  }
+
+  waitForImagesToLoad(element: HTMLElement): Promise<void> {
+    const images = Array.from(element.getElementsByTagName('img')) as HTMLImageElement[];
+    const promises = images.map(img => {
+      if (img.complete) return Promise.resolve();
+      return new Promise<void>(resolve => { img.onload = () => resolve(); img.onerror = () => resolve(); });
+    });
+    return Promise.all(promises).then(() => {});
   }
 }
